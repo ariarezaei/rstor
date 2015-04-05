@@ -11,10 +11,10 @@
 {
     position: fixed;
     top: 61px;
-    left: 225px;
+    left: 10%;
     bottom: 0px;
-    width: 225px;
-    margin-left: -225px;
+    width: 10%;
+    margin-left: -10%;
     border: none;
     border-radius: 0;
     overflow-y: auto;
@@ -44,5 +44,6 @@
 }
 #content-wrapper
 {
-    padding-left: 255px;
+    padding-left: 13%;
+    width: 99%;
 }

@@ -1,5 +1,65 @@
 {% extends 'base.html' %}
+
+{% block extra_css %}
+    {% load staticfiles %}
+    <link href="{% static "css/index.css" %}" rel="stylesheet">
+    <link href="{% static "css/morris.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_script %}
+    {% load staticfiles %}
+    <script src="{% static "js/index.js" %}"></script>
+    <script src="{% static "js/raphael-min.js" %}"></script>
+    <script src="{% static "js/morris.min.js" %}"></script>
+{% endblock %}
+
 {% block content %}
-    <h1>Some title here</h1>
-    <p> Some paragraph here.</p>
+    <div class="wrapper">
+        <div class="row">
+            <h1 class="page-header">Dashboard Overview</h1>
+        </div>
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Chart Series One</div>
+                <div class="panel-body">
+                    <div class="row">
+
+                        <div class="col-lg-8" style="height: 250px;">
+                            <div id="top-chart" style="height:250px;"></div>
+                        </div>
+                        <div class="col-lg-4 chart-form" style="height: 250px;">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="firstInput" class="col-sm-2 control-label">Speed</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="firstInput" placeholder="Parameter A">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="secondInput" class="col-sm-2 control-label">Accuracy</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="secondInput" placeholder="Parameter B">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="thirdInput" class="col-sm-2 control-label">Memory</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="thirdInput" placeholder="Parameter C">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5 col-sm-offset-2">
+                                        <button type="button" class="btn btn-default btn-lg btn-block">Submit</button>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <button type="button" class="btn btn-primary btn-lg btn-block">Clear</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
