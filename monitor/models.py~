@@ -1,0 +1,19 @@
+from django.db import models
+
+# Create your models here.
+from django.db import models
+# Create your models here.
+
+
+class Log(models.Model):
+        time = models.TimeField("Log Time")
+        date = models.DateField("Log Date")
+        read_hit_rate = models.FloatField()
+        write_hit_rate = models.FloatField()
+        Throughput = models.FloatField()
+        mean_write_time = models.FloatField()
+        mean_read_time = models.FloatField()
+        read_requests = models.IntegerField()
+        write_requests = models.IntegerField
+
+
