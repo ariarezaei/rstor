@@ -39,6 +39,7 @@ def f2d(file_name):
     for line in f:
         l = line.split()
         d[l[0]] = int(l[1])
+    print(d)
     return d
 
 while True:
