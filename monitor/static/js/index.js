@@ -14,13 +14,21 @@ $(function() {
         'Mean Number of Requests'
     ];
 
+    data = {};
+
+    $.get("livestat", function(result){
+        alert("DATA IS LOADED!");
+        data = result;
+        console.log(data);
+    }, "json");
+
     for (i=0;i<4;i++)
     {
-        draw_graph(ids[i], modes[i]);
+        draw_graph(ids[i], modes[i], data);
     }
 });
 
-function draw_graph(id, mode)
+function draw_graph(id, mode, data)
 {
     // Creating a random graph with 2 lines for all 4 elements
     new Morris.Line({
