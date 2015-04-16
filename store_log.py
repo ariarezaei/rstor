@@ -11,15 +11,14 @@ def store_stat():
     context = retrieve_stats("cache1")
     read_hit_rate = str(context["read_hit_rate"]) + ","
     write_hit_rate = str(context["write_hit_rate"]) + ","
-    throughput_write = str(context["throughput_write"]) + ","
-    throughput_read = str(context["throughput_read"]) + ","
-    mean_write_time = str(context["read_mean_response"])+ ","
-    mean_read_time = str(context["write_mean_response"])+ ","
+    throughput_write = str(context["write_throughput"]) + ","
+    throughput_read = str(context["read_throughput"]) + ","
+    mean_write_time = str(context["write_mean_response"])+ ","
+    mean_read_time = str(context["read_mean_response"])+ ","
     read_requests = str(context["reads"])+ ","
     write_requests = str(context["writes"])
-    command="INSERT INTO monitor_log(time, date, read_hit_rate, write_hit_rate, throughput_write, throughput_read, mean_write_time, mean_read_time, read_requests, write_requests) VALUES (CURRENT_TIME ,CURRENT_DATE," + read_hit_rate + write_hit_rate + throughput_write + throughput_read + mean_write_time + mean_read_time + read_requests + write_requests +" )"
-    print(command)
-    c.execute(command)
+    command= "INSERT INTO monitor_log(time, date, read_hit_rate, write_hit_rate, throughput_write, throughput_read, mean_write_time, mean_read_time, read_requests, write_requests) VALUES (CURRENT_TIME ,CURRENT_DATE," + read_hit_rate + write_hit_rate + throughput_write + throughput_read + mean_write_time + mean_read_time + read_requests + write_requests +" )"
+    return command
 
 
 def retrieve_stats(cache_name):
@@ -29,8 +28,8 @@ def retrieve_stats(cache_name):
         "writes": dic["writes"],
         "read_hit_rate": dic["read_hit_pct"],
         "write_hit_rate": dic["write_hit_pct"],
-        "throughput_read": dic["reads"]/dic["rdtime_ms"],
-        "throughput_write": dic["writes"]/dic["wrtime_ms"],
+        "read_throughput": dic["reads"]/dic["rdtime_ms"],
+        "write_throughput": dic["writes"]/dic["wrtime_ms"],
         "read_mean_response": dic["rdtime_ms"]/dic["reads"],
         "write_mean_response": dic["wrtime_ms"]/dic["writes"]
     }
@@ -45,10 +44,13 @@ def f2d(file_name):
         d[l[0]] = int(l[1])
     return d
 
+
 while True:
-    store_stat()
+    command = store_stat()
+    # print(command)
+    c.execute(command)
+    db.commit()
     time.sleep(60)
-db.commit()
 db.close()
 
 
