@@ -19,6 +19,7 @@ def store_stat():
     write_requests = str(context["write_requests"])
     c.execute("INSERT INTO monitor_log(time, date, read_hit_rate, write_hit_rate, throughput_write, throughput_read, mean_write_time, mean_read_time, read_requests, write_requests) VALUES (CURRENT_TIME ,CURRENT_DATE," + read_hit_rate + write_hit_rate + throughput_write + throughput_read + mean_write_time + mean_read_time + read_requests + write_requests +" )")
 
+
 def retrieve_stats(cache_name):
     dic = f2d("/proc/rapidstor/"+cache_name+"/stats")
     context = {
@@ -32,6 +33,7 @@ def retrieve_stats(cache_name):
         "read_mean_response": dic["wrtieme_ms"]/dic["writes"]
     }
     return context
+
 
 def f2d(file_name):
     f = open(file_name, 'r')
