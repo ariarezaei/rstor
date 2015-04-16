@@ -17,7 +17,9 @@ def store_stat():
     mean_read_time = str(context["write_mean_response"])+ ","
     read_requests = str(context["reads"])+ ","
     write_requests = str(context["writes"])
-    c.execute("INSERT INTO monitor_log(time, date, read_hit_rate, write_hit_rate, throughput_write, throughput_read, mean_write_time, mean_read_time, read_requests, write_requests) VALUES (CURRENT_TIME ,CURRENT_DATE," + read_hit_rate + write_hit_rate + throughput_write + throughput_read + mean_write_time + mean_read_time + read_requests + write_requests +" )")
+    command="INSERT INTO monitor_log(time, date, read_hit_rate, write_hit_rate, throughput_write, throughput_read, mean_write_time, mean_read_time, read_requests, write_requests) VALUES (CURRENT_TIME ,CURRENT_DATE," + read_hit_rate + write_hit_rate + throughput_write + throughput_read + mean_write_time + mean_read_time + read_requests + write_requests +" )"
+    print(command)
+    c.execute(command)
 
 
 def retrieve_stats(cache_name):
@@ -41,7 +43,6 @@ def f2d(file_name):
     for line in f:
         l = line.split()
         d[l[0]] = int(l[1])
-    print(d)
     return d
 
 while True:
