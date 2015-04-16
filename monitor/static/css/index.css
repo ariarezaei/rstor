@@ -18,3 +18,15 @@
 {
     border-left: 1px solid #DDDAD5;
 }
+
+.chart-body
+{
+    height: 250px;
+}
+
+.button-delimiter
+{
+    border-top: 1px solid #DDDAD5;
+    padding-top: 20px;
+    margin-top: 10px;
+}

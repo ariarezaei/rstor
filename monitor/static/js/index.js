@@ -1,18 +1,54 @@
-$(function(){
-    new Morris.Line({
-        element: "top-chart",
+$(function() {
+    console.log("Started this");
+    ids = [
+        'wr-ratio',
+        'wr-throughput',
+        'wr-response',
+        'wr-request'
+    ];
 
+    modes = [
+        'Hit Ratio',
+        'Throughput',
+        'Mean Response Time',
+        'Mean Number of Requests'
+    ];
+
+    for (i=0;i<4;i++)
+    {
+        draw_graph(ids[i], modes[i]);
+    }
+});
+
+function draw_graph(id, mode)
+{
+    // Creating a random graph with 2 lines for all 4 elements
+    new Morris.Line({
+        // Setting the element
+        element: id,
+
+        // Setting the data
         data: [
-            { year: '2008', value: 20 },
-            { year: '2009', value: 10 },
-            { year: '2010', value: 5 },
-            { year: '2011', value: 5 },
-            { year: '2012', value: 20 }
+            {rank: '1', wr_res: Math.round(Math.random()*100), rd_res:Math.round(Math.random()*100)},
+            {rank: '2', wr_res: Math.round(Math.random()*100), rd_res: Math.round(Math.random()*100)},
+            {rank: '3', wr_res: Math.round(Math.random()*100), rd_res: Math.round(Math.random()*100)},
+            {rank: '4', wr_res: Math.round(Math.random()*100), rd_res: Math.round(Math.random()*100)},
+            {rank: '5', wr_res: Math.round(Math.random()*100), rd_res: Math.round(Math.random()*100)},
+            {rank: '6', wr_res: Math.round(Math.random()*100), rd_res: Math.round(Math.random()*100)},
         ],
 
-        xkey: 'year',
-        ykeys: ['value'],
-        labels: ['Value']
+        // Setting x labels
+        xkey: 'rank',
 
+        // Setting y labels
+        ykeys: ['wr_res', 'rd_res'],
+
+        // Setting y label names
+        labels: ['Write ' + mode, 'Read ' + mode],
+
+        // options
+        hideHover: 'auto'
     });
-})
+
+    //TODO: get the data using AJAX
+}
