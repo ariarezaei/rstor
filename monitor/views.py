@@ -25,8 +25,7 @@ def instant_stat(request):
 
 
 def retrieve_stats(cache_name):
-    call("cat /proc/rapidstor/"+cache_name+"/stats > tmp_stat.txt")
-    dic = f2d("tmp_stat.txt")
+    dic = f2d("/proc/rapidstor/"+cache_name+"/stats > tmp_stat.txt")
     context = {
         "reads": dic["reads"],
         "writes": dic["writes"],
