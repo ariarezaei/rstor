@@ -24,8 +24,8 @@ def retrieve_stats(cache_name):
     context = {
         "reads": dic["reads"],
         "writes": dic["writes"],
-        "read_hit_rate": dic["read_hit_rate"],
-        "write_hit_rate": dic["write_hit_rate"],
+        "read_hit_rate": dic["read_hit_pct"],
+        "write_hit_rate": dic["write_hit_pct"],
         "read_throughput": dic["reads"]/dic["rdtime_ms"],
         "write_throughput": dic["writes"]/dic["wrtime_ms"],
         "read_mean_response": dic["rdtieme"]/dic["reads"],
