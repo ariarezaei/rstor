@@ -4,4 +4,5 @@ from monitor import views
 
 urlpatterns = patterns('monitor.views',
                        url(r'^$', views.index),
-                       url(r'^livestat$', views.instant_stat))
+                       url(r'^livestat$', views.instant_stat),
+                       url(r'^dbstat$', views.retrieve_db))

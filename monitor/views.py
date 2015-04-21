@@ -2,6 +2,7 @@ from django.http import HttpResponseNotFound, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 import json
 from django.shortcuts import HttpResponse
+from monitor.models import Log
 from subprocess import call
 import math
 import random
@@ -51,6 +52,11 @@ def retrieve_stats(cache_name):
         "read_mean_response": dic["rdtime_ms"]/dic["reads"],
         "write_mean_response": dic["wrtime_ms"]/dic["writes"]
     }
+    return context
+
+def retrieve_db(request):
+    l = Log.objects.latest('id');
+    context = l.__dict
     return context
 
 
