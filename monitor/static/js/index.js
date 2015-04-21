@@ -20,7 +20,7 @@ $(function() {
     responseGraph = start_graph("wr-response", "Mean Response Time");
     requestGraph = start_graph("wr-request", "Mean Number of Requests");
 
-    graphsInterval = window.setInterval(update_charts, 500);
+    graphsInterval = window.setInterval(update_charts, 1000);
 
     globalTime = 1;
 
@@ -101,37 +101,4 @@ function start_graph(id, mode)
 
         smooth: 'false'
     });
-}
-
-function draw_graph(id, mode, data)
-{
-    // Creating a random graph with 2 lines for all 4 elements
-    new Morris.Line({
-        // Setting the element
-        element: id,
-
-        // Setting the data
-        data: [
-            {rank: '1', wr_res: Math.round(Math.random()*100), rd_res:Math.round(Math.random()*100)},
-            {rank: '2', wr_res: Math.round(Math.random()*100), rd_res: Math.round(Math.random()*100)},
-            {rank: '3', wr_res: Math.round(Math.random()*100), rd_res: Math.round(Math.random()*100)},
-            {rank: '4', wr_res: Math.round(Math.random()*100), rd_res: Math.round(Math.random()*100)},
-            {rank: '5', wr_res: Math.round(Math.random()*100), rd_res: Math.round(Math.random()*100)},
-            {rank: '6', wr_res: Math.round(Math.random()*100), rd_res: Math.round(Math.random()*100)},
-        ],
-
-        // Setting x labels
-        xkey: 'rank',
-
-        // Setting y labels
-        ykeys: ['wr_res', 'rd_res'],
-
-        // Setting y label names
-        labels: ['Write ' + mode, 'Read ' + mode],
-
-        // options
-        hideHover: 'auto'
-    });
-
-    //TODO: get the data using AJAX
 }
