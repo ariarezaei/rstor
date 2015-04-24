@@ -15,25 +15,45 @@ var globalTime;
 $(function() {
     console.log("Initiated the charts");
 
-    hitRatioGraph = start_graph("wr-ratio", "Hit Ratio");
-    throughputGraph = start_graph("wr-throughput", "Throughput");
-    responseGraph = start_graph("wr-response", "Mean Response Time");
-    requestGraph = start_graph("wr-request", "Mean Number of Requests");
+    initZero(hitRatioData, 30);
+    initZero(throughputData, 30);
+    initZero(responseData, 30);
+    initZero(requestData, 30);
 
-    graphsInterval = window.setInterval(update_charts, 1000);
+    hitRatioGraph = start_graph("wr-ratio", "Hit Ratio", hitRatioData);
+    throughputGraph = start_graph("wr-throughput", "Throughput", throughputData);
+    responseGraph = start_graph("wr-response", "Mean Response Time", responseData);
+    requestGraph = start_graph("wr-request", "Mean Number of Requests", requestData);
+
+    graphsInterval = window.setInterval(update_charts, 2000);
 
     globalTime = 1;
-
 });
+
+function initZero(data, num)
+{
+    for (var i=0;i<num;i++)
+    {
+        data.push({
+            'time': i+"sec",
+            'wr_res': 0,
+            'rd_res': 0
+        })
+    }
+}
 
 
 function add_point(first, second, time, graph, data) {
-
     data.push({
-        'time': time+"s",
+        'time': (time+30)+"sec",
         'wr_res': first,
         'rd_res': second
     });
+
+    if (data.length > 30)
+    {
+        data.shift();
+    }
 
     graph.setData(data);
 }
@@ -86,19 +106,19 @@ function update_charts()
     globalTime += 1;
 }
 
-function start_graph(id, mode)
+function start_graph(id, mode, initialData)
 {
     return Morris.Line({
         element: id,
 
-        data: [],
+        data: initialData,
 
         xkey: 'time',
         ykeys: ['wr_res', 'rd_res'],
         labels: ['Write + ' + mode, 'Read ' + mode],
 
-        hideHover: 'auto',
-
+        hideHover: 'always',
+        axes: 'false',
         smooth: 'false'
     });
 }
