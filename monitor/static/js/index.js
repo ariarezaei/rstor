@@ -122,3 +122,4 @@ function start_graph(id, mode, initialData)
         smooth: 'false'
     });
 }
+

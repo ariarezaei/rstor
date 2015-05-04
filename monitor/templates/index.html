@@ -19,47 +19,65 @@
             <h1 class="page-header">Dashboard Overview</h1>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Write/Read Hit Ratio</h3>
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Write/Read Hit Ratio</h3>
+                        </div>
+                        <div class="panel-body chart-body" id="wr-ratio"></div>
                     </div>
-                    <div class="panel-body chart-body" id="wr-ratio"></div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Write/Read Throughput</h3>
+                        </div>
+                        <div class="panel-body chart-body" id="wr-throughput"></div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Write/Read Mean Response Time</h3>
+                        </div>
+                        <div class="panel-body chart-body" id="wr-response"></div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Write/Read Request Rate</h3>
+                        </div>
+                        <div class="panel-body chart-body" id="wr-request"></div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Write/Read Throughput</h3>
-                    </div>
-                    <div class="panel-body chart-body" id="wr-throughput"></div>
+            <div class="col-md-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading"><h4>Statistics</h4></div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Write/Read Mean Response Time</h3>
-                    </div>
-                    <div class="panel-body chart-body" id="wr-response"></div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Write/Read Request Rate</h3>
-                    </div>
-                    <div class="panel-body chart-body" id="wr-request"></div>
-                </div>
-            </div>
-        </div>
-        <div class="row button-delimiter">
-            <div class="col-sm-2 col-sm-offset-4">
-                <button type="button" class="btn btn-default btn-lg btn-block">START</button>
-            </div>
-            <div class="col-sm-2">
-                <button type="button" class="btn btn-primary btn-lg btn-block">CLEAR</button>
+
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Column Heading</th>
+                            <th>Column Heading</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="info">
+                            <th>1</th>
+                            <th>Some Parameter</th>
+                            <th>Some value</th>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <th>Some Parameter</th>
+                            <th>Some value</th>
+                        </tr>
+                        <tr class="info">
+                            <th>3</th>
+                            <th>Some Parameter</th>
+                            <th>Some value</th>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 {#        <div class="row">#}

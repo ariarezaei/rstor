@@ -22,7 +22,7 @@ def index(request):
 def instant_stat(request):
 
     if request.method == u'GET':
-        context = retrieve_stats("cache1")
+        context = dummy_retrieve_stats("cache1")
         return HttpResponse(json.dumps(context), content_type="application/json")
 
 
