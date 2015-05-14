@@ -11,6 +11,7 @@
     <script src="{% static "js/index.js" %}"></script>
     <script src="{% static "js/raphael-min.js" %}"></script>
     <script src="{% static "js/morris.min.js" %}"></script>
+    <script src="{% static "js/highcharts.js" %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -22,62 +23,69 @@
             <div class="col-lg-8">
                 <div class="row">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Write/Read Hit Ratio</h3>
-                        </div>
-                        <div class="panel-body chart-body" id="wr-ratio"></div>
+                        <div class="panel-body chart-body" id="wr-ratio" data-type="chart"></div>
                     </div>
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Write/Read Throughput</h3>
-                        </div>
-                        <div class="panel-body chart-body" id="wr-throughput"></div>
+                        <div class="panel-body chart-body" id="wr-throughput" data-type="chart"></div>
                     </div>
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Write/Read Mean Response Time</h3>
-                        </div>
-                        <div class="panel-body chart-body" id="wr-response"></div>
+                        <div class="panel-body chart-body" id="wr-response" data-type="chart"></div>
                     </div>
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Write/Read Request Rate</h3>
-                        </div>
-                        <div class="panel-body chart-body" id="wr-request"></div>
+                        <div class="panel-body chart-body" id="wr-request" data-type="chart"></div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="panel panel-info">
+                <div class="panel panel-primary ">
                     <div class="panel-heading"><h4>Statistics</h4></div>
-                </div>
+                    <div class="panel-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="cache-name"> Choose target cache<span class="text-danger"> *</span></label>
+                                <select id="cache-name" class="form-control cache-selector" onchange="start_updates()">
+                                    <option>Please choose a cache</option>
+                                    {% for cache in caches %}
+                                        <option>{{ cache }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </form>
+                    </div>
 
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Column Heading</th>
-                            <th>Column Heading</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="info">
-                            <th>1</th>
-                            <th>Some Parameter</th>
-                            <th>Some value</th>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <th>Some Parameter</th>
-                            <th>Some value</th>
-                        </tr>
-                        <tr class="info">
-                            <th>3</th>
-                            <th>Some Parameter</th>
-                            <th>Some value</th>
-                        </tr>
-                    </tbody>
-                </table>
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr class="active">
+                                <th>Main Disk Name</th>
+                                <th id="main_disk_name">-</th>
+                            </tr>
+                            <tr>
+                                <th>Main Disk Size</th>
+                                <td id="main_disk_size">-</td>
+                            </tr>
+                            <tr class="active">
+                                <th>Cache Disk Name</th>
+                                <th id="cache_disk_name">-</th>
+                            </tr>
+                            <tr>
+                                <th>Cache State</th>
+                                <th id="cache_state">-</th>
+                            </tr>
+                            <tr>
+                                <th>Cache Type</th>
+                                <td id="cache_type">-</td>
+                            </tr>
+                            <tr>
+                                <th>Cache Size</th>
+                                <td id="cache_size">-</td>
+                            </tr>
+                            <tr>
+                                <th>Block Size</th>
+                                <td id="block_size">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 {#        <div class="row">#}
