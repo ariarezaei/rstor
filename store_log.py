@@ -50,7 +50,7 @@ while True:
     # print(command)
     c.execute(command)
     db.commit()
-    time.sleep(60)
+    time.sleep(5)
 db.close()
 
 
