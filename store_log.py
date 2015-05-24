@@ -17,7 +17,7 @@ def store_stat(cache):
     mean_read_time = str(context["read_mean_response"])+ ","
     read_requests = str(context["reads"])+ ","
     write_requests = str(context["writes"])
-    command= "INSERT INTO monitor_log(time, date, cache, read_hit_rate, write_hit_rate, throughput_write, throughput_read, tot_write_time, tot_read_time, read_requests, write_requests) VALUES (CURRENT_TIME ,CURRENT_DATE," + cache + "," + read_hit_rate + write_hit_rate + throughput_write + throughput_read + mean_write_time + mean_read_time + read_requests + write_requests +" )"
+    command= "INSERT INTO monitor_log(time, date, cache, read_hit_rate, write_hit_rate, throughput_write, throughput_read, tot_write_time, tot_read_time, read_requests, write_requests) VALUES (CURRENT_TIME ,CURRENT_DATE," + "'" + cache + "'," + read_hit_rate + write_hit_rate + throughput_write + throughput_read + mean_write_time + mean_read_time + read_requests + write_requests +" )"
     return command
 
 

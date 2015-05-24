@@ -6,7 +6,7 @@ from django.db import models
 
 
 class Log(models.Model):
-    cache = models.TextField(default="")
+    cache = models.TextField()
     time = models.TimeField()
     date = models.DateField()
     read_hit_rate = models.FloatField(default=0)
