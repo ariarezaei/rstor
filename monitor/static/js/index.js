@@ -204,7 +204,6 @@ function load_cache_info(cache_name)
 
 function start_updates(interval)
 {
-
     var cache_name = $('#cache-name').val();
     if (cache_name == "Please choose a cache")  return;
     load_cache_info(cache_name);
