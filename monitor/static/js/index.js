@@ -234,7 +234,7 @@ function add_point(write, read, id) {
 function update_charts()
 {
     //console.log("Update started");
-    $.get("dbstat", function(result){
+    $.get("livestat", function(result){
         //console.log("Data is loaded, result = ");
         data = result;
         //console.log(data);

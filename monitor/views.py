@@ -89,15 +89,14 @@ def cache_config(request, cache_name):
     }), content_type="application/json")
 
 # Main function for retrieving, chooses from three functions below
-def instant_stat(request):
+def instant_stat(request, cache_name):
 
     if request.method == u'GET':
-        context = retrieve_stats("cache1")
+        context = retrieve_db(cache_name, cache_name)
         return HttpResponse(json.dumps(context), content_type="application/json")
 
 # Creates dummy cache stats for testing purposes
 def dummy_retrieve_stats(cache_name):
-
     context = {
         "reads": round(random.random()*100),
         "writes": round(random.random()*100),
@@ -126,9 +125,10 @@ def retrieve_stats(cache_name):
     return context
 
 # Retrieves cache stats from DB
-def retrieve_db(request):
+def retrieve_db(request, cache_name):
     l = Log.objects.latest('id')
     context = l.__dict__
+    print(context)
     return context
 
 # Changes a stat file into a dictionary
