@@ -77,7 +77,7 @@ def caches():
 
 # Retrieves cache stat from CMD
 def cache_config(request, cache_name):
-    config = fileToDicInt("/proc/rapidstor/" + cache_name + "/config")
+    config = fileToDicString("/proc/rapidstor/" + cache_name + "/config")
     print("We are trying to find stats for " + cache_name)
     print(config)
     print(cache_mode(config['mode']))
@@ -117,7 +117,7 @@ def dummy_retrieve_stats(cache_name):
 
 # Retrieves cache stats from CMD
 def retrieve_stats(cache_name):
-    dic = fileToDicString("/proc/rapidstor/"+cache_name+"/stats")
+    dic = fileToDicInt("/proc/rapidstor/"+cache_name+"/stats")
     context = {
         "reads": dic["reads"],
         "writes": dic["writes"],
