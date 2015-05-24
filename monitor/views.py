@@ -129,7 +129,7 @@ def retrieve_stats(cache_name):
 def retrieve_db(request):
     l = Log.objects.latest('id')
     print(l)
-    context = l.__dict
+    context = l.__dict__
     return context
 
 # Changes a stat file into a dictionary
