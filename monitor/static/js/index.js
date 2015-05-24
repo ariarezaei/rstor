@@ -204,7 +204,6 @@ function load_cache_info(cache_name)
 
 function start_updates(interval)
 {
-    //TODO: Make animations smooth, points do not disappear, something shitty happens
 
     var cache_name = $('#cache-name').val();
     if (cache_name == "Please choose a cache")  return;
@@ -220,7 +219,8 @@ function start_updates(interval)
     update_charts(); // This is the first points as user selects a cache
 
     // Set update intervals
-    updateHandler = window.setInterval(update_charts, T * 1000);
+    // TODO uncomment the following line
+    //updateHandler = window.setInterval(update_charts, T * 1000);
 }
 
 function add_point(write, read, id) {
