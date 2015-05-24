@@ -78,11 +78,6 @@ def caches():
 # Retrieves cache stat from CMD
 def cache_config(request, cache_name):
     config = fileToDicString("/proc/rapidstor/" + cache_name + "/config")
-    print("We are trying to find stats for " + cache_name)
-    print(config)
-    print(cache_mode(config['mode']))
-    print(styled_state(config['state']))
-    print("We have finished finding stats")
     return HttpResponse(json.dumps({
         'main_disk_name': config['src_name'],
         'main_disk_size': config['src_size'],

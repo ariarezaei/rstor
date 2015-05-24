@@ -218,8 +218,7 @@ function start_updates(interval)
     update_charts(); // This is the first points as user selects a cache
 
     // Set update intervals
-    // TODO uncomment the following line
-    //updateHandler = window.setInterval(update_charts, T * 1000);
+    updateHandler = window.setInterval(update_charts, T * 1000);
 }
 
 function add_point(write, read, id) {
