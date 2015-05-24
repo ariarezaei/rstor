@@ -77,7 +77,7 @@ def caches():
 
 # Retrieves cache stat from CMD
 def cache_config(request, cache_name):
-    config = f2d("/proc/rapidstor/" + cache_name + "/config")
+    config = fileToDicInt("/proc/rapidstor/" + cache_name + "/config")
     print("We are trying to find stats for " + cache_name)
     print(config)
     print(cache_mode(config['mode']))
@@ -117,7 +117,7 @@ def dummy_retrieve_stats(cache_name):
 
 # Retrieves cache stats from CMD
 def retrieve_stats(cache_name):
-    dic = f2d("/proc/rapidstor/"+cache_name+"/stats")
+    dic = fileToDicString("/proc/rapidstor/"+cache_name+"/stats")
     context = {
         "reads": dic["reads"],
         "writes": dic["writes"],
@@ -137,7 +137,7 @@ def retrieve_db(request):
     return context
 
 # Changes a stat file into a dictionary
-def f2d(file_name):
+def fileToDicInt(file_name):
     f = open(file_name, 'r')
     d = dict()
     for line in f:
@@ -145,7 +145,10 @@ def f2d(file_name):
         d[l[0]] = int(l[1])
     return d
 
-
-
-
-
+def fileToDicString(file_name):
+    f = open(file_name, 'r')
+    d = dict()
+    for line in f:
+        l = line.split()
+        d[l[0]] = l[1]
+    return d

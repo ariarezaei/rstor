@@ -188,7 +188,7 @@ function init(num)
 
 function load_cache_info(cache_name)
 {
-    $.get("caches/" + cache_name, function(result){
+    $.get( cache_name, function(result){
         console.log("Succesfully acquired cache info");
         console.log(result);
         $("#main_disk_name").html(result['main_disk_name']);
