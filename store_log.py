@@ -48,7 +48,8 @@ while True:
     call('./caches.sh')
     f = open('caches.txt', 'r')
 
-    for cache in f:
+    for line in f:
+        cache = line.rstrip("\n")
         command = store_stat(cache)
         c.execute(command)
         db.commit()
