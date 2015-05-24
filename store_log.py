@@ -50,7 +50,9 @@ while True:
 
     for line in f:
         cache = line.rstrip("\n")
+        print(cache)
         command = store_stat(cache)
+        print(command)
         c.execute(command)
         db.commit()
 
