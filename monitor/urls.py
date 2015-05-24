@@ -6,4 +6,4 @@ urlpatterns = patterns('monitor.views',
                        url(r'^$', views.index),
                        url(r'^livestat$', views.instant_stat),
                        url(r'^dbstat$', views.retrieve_db),
-                       url(r'^caches/(?P<cache_name>\w+)$', views.dummy_cache_config))
+                       url(r'^caches/(?P<cache_name>\w+)$', views.cache_config))
