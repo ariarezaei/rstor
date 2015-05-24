@@ -129,8 +129,17 @@ def retrieve_stats(cache_name):
 # Retrieves cache stats from DB
 def retrieve_db(request, cache_name):
     l = Log.objects.latest('id')
-    context = l.__dict__
-    print(context)
+    data = l.__dict__
+    context = {
+        'reads': data['read_requests'],
+        'writes': data['write_requests'],
+        'read_hit_rate': data['read_hit_rate'],
+        'write_hit_rate': data['write_hit_rate'],
+        'throughput_read': data['throughput_read'],
+        'throughput_write': data['throughput_write'],
+        'read_mean_response': data['mean_read_time'],
+        'write_mean_response': data['mean_write_time']
+    }
     return context
 
 # Changes a stat file into a dictionary
