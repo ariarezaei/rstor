@@ -233,8 +233,9 @@ function add_point(write, read, id) {
 
 function update_charts()
 {
+    var cache_name = $('#cache-name').val();
     //console.log("Update started");
-    $.get("livestat", function(result){
+    $.get("livestat/" + cache_name , function(result){
         //console.log("Data is loaded, result = ");
         data = result;
         //console.log(data);

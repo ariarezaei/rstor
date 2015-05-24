@@ -93,6 +93,8 @@ def instant_stat(request, cache_name):
 
     if request.method == u'GET':
         context = retrieve_db(cache_name, cache_name)
+        context['date'] = str(context['date'])
+        context['time'] = str(context['time'])
         return HttpResponse(json.dumps(context), content_type="application/json")
 
 # Creates dummy cache stats for testing purposes
