@@ -128,6 +128,7 @@ def retrieve_stats(cache_name):
 # Retrieves cache stats from DB
 def retrieve_db(request):
     l = Log.objects.latest('id')
+    print(l)
     context = l.__dict
     return context
 
