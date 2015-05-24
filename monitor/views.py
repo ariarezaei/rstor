@@ -135,8 +135,8 @@ def retrieve_db(request, cache_name):
         'write_hit_rate': data['write_hit_rate'],
         'throughput_read': data['throughput_read'],
         'throughput_write': data['throughput_write'],
-        'read_mean_response': data['mean_read_time'],
-        'write_mean_response': data['mean_write_time'],
+        'read_mean_response': data['tot_read_time'],
+        'write_mean_response': data['tot_write_time'],
         'date': str(data['date']),
         'time': str(data['time'])
     }

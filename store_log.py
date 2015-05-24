@@ -7,8 +7,8 @@ db = sqlite3.connect("db.sqlite3")
 c = db.cursor()
 
 
-def store_stat():
-    context = retrieve_stats("cache1")
+def store_stat(cache):
+    context = retrieve_stats(cache)
     read_hit_rate = str(context["read_hit_rate"]) + ","
     write_hit_rate = str(context["write_hit_rate"]) + ","
     throughput_write = str(context["write_throughput"]) + ","
@@ -17,7 +17,7 @@ def store_stat():
     mean_read_time = str(context["read_mean_response"])+ ","
     read_requests = str(context["reads"])+ ","
     write_requests = str(context["writes"])
-    command= "INSERT INTO monitor_log(time, date, read_hit_rate, write_hit_rate, throughput_write, throughput_read, mean_write_time, mean_read_time, read_requests, write_requests) VALUES (CURRENT_TIME ,CURRENT_DATE," + read_hit_rate + write_hit_rate + throughput_write + throughput_read + mean_write_time + mean_read_time + read_requests + write_requests +" )"
+    command= "INSERT INTO monitor_log(time, date, cache, read_hit_rate, write_hit_rate, throughput_write, throughput_read, tot_write_time, tot_read_time, read_requests, write_requests) VALUES (CURRENT_TIME ,CURRENT_DATE," + cache + read_hit_rate + write_hit_rate + throughput_write + throughput_read + mean_write_time + mean_read_time + read_requests + write_requests +" )"
     return command
 
 
@@ -28,10 +28,10 @@ def retrieve_stats(cache_name):
         "writes": dic["ssd_writes"],
         "read_hit_rate": dic["read_hit_pct"],
         "write_hit_rate": dic["write_hit_pct"],
-        "read_throughput": 1/dic["rdtime_ms"]*1000,
-        "write_throughput": 1/dic['wrtime_ms']*1000,
-        "read_mean_response": dic["rdtime_ms"],
-        "write_mean_response": dic["wrtime_ms"]
+        "read_throughput": dic["reads"]/dic["rdtime_ms"]*1000,
+        "write_throughput": dic["writes"]/dic["wrtime_ms"]*1000,
+        "read_mean_response": dic["rdtime_ms"]/dic["reads"],
+        "write_mean_response": dic["wrtime_ms"]/dic["writes"]
     }
     return context
 
@@ -44,12 +44,15 @@ def f2d(file_name):
         d[l[0]] = int(l[1])
     return d
 
-
 while True:
-    command = store_stat()
-    # print(command)
-    c.execute(command)
-    db.commit()
+    call('./caches.sh')
+    f = open('caches.txt', 'r')
+
+    for cache in f:
+        command = store_stat(cache)
+        c.execute(command)
+        db.commit()
+
     time.sleep(5)
 db.close()
 
