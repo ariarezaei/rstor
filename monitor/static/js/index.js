@@ -39,7 +39,7 @@ $(function() {
 
     create_graph(
         'wr-request',
-        'Read & Write Mean Request Rate',
+        'Read & Write Request Rate',
         'Mean Request Rate',
         'Request Rate'
     );
