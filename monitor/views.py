@@ -14,13 +14,7 @@ def index(request):
         return HttpResponseNotFound("Sorry. We could not find the page you requested. Please check the address and try again.")
 
     #TODO: find all caches and put it in the array below
-    caches = [
-        'cache1',
-        'cache2',
-        'cache3',
-        'cache_imba',
-        'cache_nakazaki'
-    ]
+    caches = cache_list()
 
     context = {
         'title': "Rapid Storage Monitoring Portal",
@@ -28,6 +22,20 @@ def index(request):
     }
 
     return render(request, 'index.html', context)
+
+
+def stats(request):
+    if request.method == u'POST':
+        return HttpResponseNotFound("Sorry. We could not find the page you requested. Please check the address and try again.")
+
+    caches = cache_list()
+
+    context = {
+        'title': 'Rapid Storage Monitoring Portal',
+        'caches': caches
+    }
+
+    return render(request, 'stats.html', context)
 
 # Create some dummy cache configurations for testing purposes
 def dummy_cache_config(request, cache_name):
@@ -67,7 +75,8 @@ def styled_state(state):
     else:
         return '<span class"text-danger">UNKNOWN (' + state + ')</span>'
 
-def caches():
+# Returns a list of caches
+def cache_list():
     call("./caches.sh")
     f = open(caches.txt, 'r')
     c=[]
@@ -142,7 +151,7 @@ def retrieve_db(request, cache_name):
     }
     return context
 
-# Changes a stat file into a dictionary
+# Changes a stat file into a Integer Dictionary
 def fileToDicInt(file_name):
     f = open(file_name, 'r')
     d = dict()
@@ -151,6 +160,7 @@ def fileToDicInt(file_name):
         d[l[0]] = int(l[1])
     return d
 
+# Changes a stat file into a String Dictionary
 def fileToDicString(file_name):
     f = open(file_name, 'r')
     d = dict()
