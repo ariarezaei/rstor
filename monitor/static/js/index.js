@@ -129,7 +129,7 @@ function create_graph(id, title, ytitle, mode)
         },
 
         legend: {
-            enabled: false
+            align: 'center'
         },
 
         exporting: {
