@@ -143,7 +143,7 @@ def edit(request, cache_name):
             "ssd": inf["ssd_name"],
             "hdd": inf["src_name"]
         }
-        context={'form': CacheForm(initial=data)}
+        context={'form': CacheForm(initial=data), "cache_name": cache_name}
         return render(request, "edit.html", context)
     if request.method == u'POST':
         command = "rstor_cli edit " + " -d " + request.POST.get("hdd").rstrip("\n") + " -s " + request.POST.get("ssd").rstrip("\n")
