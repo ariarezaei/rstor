@@ -74,10 +74,10 @@ while True:
 
     for line in f:
         cache = line.rstrip("\n")
+        print(cache)
         command = store_stat(cache)
         c.execute(command)
         db.commit()
-
     time.sleep(5)
 db.close()
 
