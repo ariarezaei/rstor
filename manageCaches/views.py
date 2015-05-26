@@ -48,7 +48,7 @@ def cache_list():
 
 
 def cache_info(cache_name):
-    inf = f2d("/proc/rapidstor/"+cache_name+"/config");
+    inf = fileToDicString("/proc/rapidstor/"+cache_name+"/config");
     if inf.get("mode") == 1:
         inf["mode"] = "Write Back"
     elif inf.get("mode") == 3:
@@ -59,7 +59,7 @@ def cache_info(cache_name):
 
 
 
-def f2d(file_name):
+def fileToDicInt(file_name):
     f = open(file_name, 'r')
     d = dict()
     for line in f:
@@ -67,6 +67,14 @@ def f2d(file_name):
         d[l[0]] = int(l[1])
     return d
 
+# Changes a stat file into a String Dictionary
+def fileToDicString(file_name):
+    f = open(file_name, 'r')
+    d = dict()
+    for line in f:
+        l = line.split()
+        d[l[0]] = l[1]
+    return d
 
 
 
