@@ -170,6 +170,6 @@ def remove(request, cache_name):
         os.system(command)
         data = ""
         with open("status.txt", "r") as file:
-        data = file.readlines()
+            data = file.readlines()
         context={'status': data}
         return render(request, "status.html", context)
