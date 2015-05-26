@@ -8,6 +8,7 @@ from subprocess import *
 import math
 import random
 import os.path
+import datetime
 
 # Main view for index page
 def index(request):
@@ -29,6 +30,17 @@ def index(request):
 def stats(request):
     if request.method == u'POST':
         print("Hello we are here in the POST")
+        cache = request.POST['cache_name']
+        start = request.POST['start_date']
+        end = request.POST['end_date']
+
+        format = "%m/%d/%Y %I:%M %p"
+
+        start_dt = datetime.datetime.strptime(start, format)
+        end_dt = datetime.datetime.strptime(end, format)
+
+        print(start_dt)
+        print(end_dt)
 
         context = {
             'hello': 'world',
