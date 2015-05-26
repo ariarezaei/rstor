@@ -38,6 +38,9 @@ def stats(request):
         start_dt = datetime.datetime.strptime(start, format)
         end_dt = datetime.datetime.strptime(end, format)
 
+        res = Log.objects.exclude(datetime__lt=start_dt).exclude(datetime__gt=end_dt)
+        print(res.count())
+
         context = {
             'hello': 'world',
             'goodbye': 'my lover'
