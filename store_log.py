@@ -46,7 +46,7 @@ def retrieve_stats(cache_name):
         "read_throughput": 0 if dic["rdtime_ms"] == last_read_time[cache_name] else 1000*(dic["reads"] - last_reads[cache_name])/(dic["rdtime_ms"] - last_read_time[cache_name]),
         "write_throughput": 0 if dic["wrtime_ms"] == last_write_time[cache_name] else 1000*(dic["writes"] - last_writes[cache_name])/(dic["wrtime_ms"] - last_write_time[cache_name]),
         "read_mean_response": 0 if dic["reads"] == last_reads[cache_name] else (dic["rdtime_ms"] - last_read_time[cache_name])/(dic["reads"] - last_reads[cache_name]),
-        "write_mean_response": 0 if dic["writes"] - last_writes[cache_name] else (dic["wrtime_ms"] - last_write_time[cache_name])/(dic["writes"] - last_writes[cache_name]),
+        "write_mean_response": 0 if dic["writes"] == last_writes[cache_name] else (dic["wrtime_ms"] - last_write_time[cache_name])/(dic["writes"] - last_writes[cache_name]),
         "cur_reads": dic["reads"] - last_reads[cache_name],
         "cur_writes": dic["writes"] - last_writes[cache_name],
         "cur_read_time": dic["rdtime_ms"] - last_read_time[cache_name],
