@@ -4,7 +4,7 @@ from django import forms
 from subprocess import call
 import json
 import os.path
-import os.system
+import os
 # Create your views here.
 
 MODE_CHOICES = (
