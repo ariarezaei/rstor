@@ -7,6 +7,7 @@ var updateHandler = undefined;
 var isLoading = false;
 var names = ["wr-ratio", "wr-throughput", "wr-response", "wr-request"];
 
+// Initial function
 $(function() {
     //console.log("Initiated the charts");
 
@@ -50,7 +51,7 @@ $(function() {
     //graphsInterval = window.setInterval(update_charts, T * 1000);
 });
 
-
+// Toggles loading status
 function toggleLoading()
 {
     if (isLoading == false)
@@ -69,6 +70,7 @@ function toggleLoading()
     }
 }
 
+// Turns off loading status
 function turnOffLoading()
 {
     $('[data-type="chart"]').each(function(){
@@ -77,6 +79,7 @@ function turnOffLoading()
     isLoading = false;
 }
 
+// Creates an empty chart
 function create_graph(id, title, ytitle, mode)
 {
     $('#' + id).highcharts({
@@ -159,6 +162,7 @@ function create_graph(id, title, ytitle, mode)
     });
 }
 
+// Initializes a chart with NUM points of zero
 function init(num)
 {
     var dataWrite = [],
@@ -175,7 +179,7 @@ function init(num)
             y: 0
         });
     }
-    for (var i=0;i<names.length;i++)
+    for (i=0;i<names.length;i++)
     {
         console.log("Initializing " + names[i]);
         var chart = $('#' + names[i]).highcharts();
@@ -186,6 +190,7 @@ function init(num)
     }
 }
 
+// Loads cache information when a cache is selected
 function load_cache_info(cache_name)
 {
     $.get( cache_name, function(result){
@@ -202,6 +207,7 @@ function load_cache_info(cache_name)
     }, "json");
 }
 
+// Starts updates after a cache is selected
 function start_updates(interval)
 {
     var cache_name = $('#cache-name').val();
@@ -221,6 +227,7 @@ function start_updates(interval)
     updateHandler = window.setInterval(update_charts, T * 1000);
 }
 
+// Adds a set of points to a given chart
 function add_point(write, read, id) {
     // read comes first
     // write comes second
@@ -231,6 +238,7 @@ function add_point(write, read, id) {
     chart.series[1].addPoint([curTime, write], true, true);
 }
 
+// Updates all the charts
 function update_charts()
 {
     var cache_name = $('#cache-name').val();

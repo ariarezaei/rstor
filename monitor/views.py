@@ -6,8 +6,6 @@ from monitor.models import Log
 from subprocess import *
 import math
 import random
-import os.path
-
 
 # Main view for index page
 def index(request):
@@ -80,14 +78,11 @@ def styled_state(state):
 # Returns a list of caches
 def cache_list():
     call("./caches.sh")
-    if os.path.isfile("caches.txt"):
-        f = open("caches.txt", 'r')
-        c=[]
-        for line in f:
-            c.append(line.rstrip("\n"))
-        return c
-    else:
-        return []
+    f = open('caches.txt', 'r')
+    c=[]
+    for line in f:
+        c.append(line.rstrip("\n"))
+    return c
 
 # Retrieves cache stat from CMD
 def cache_config(request, cache_name):
@@ -140,8 +135,7 @@ def retrieve_stats(cache_name):
 
 # Retrieves cache stats from DB
 def retrieve_db(request, cache_name):
-    logs = Log(cache=cache_name)
-    l = logs.objects.latest('id')
+    l = Log.objects.latest('id')
     data = l.__dict__
     context = {
         'reads': data['read_requests'],

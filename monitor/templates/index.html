@@ -3,14 +3,12 @@
 {% block extra_css %}
     {% load staticfiles %}
     <link href="{% static "css/index.css" %}" rel="stylesheet">
-    <link href="{% static "css/morris.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block extra_script %}
     {% load staticfiles %}
-    <script src="{% static "js/index.js" %}"></script>
-    <script src="{% static "js/raphael-min.js" %}"></script>
     <script src="{% static "js/highcharts.js" %}"></script>
+    <script src="{% static "js/index.js" %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -19,7 +17,7 @@
             <h1 class="page-header">Dashboard Overview</h1>
         </div>
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <div class="row">
                     <div class="panel panel-primary">
                         <div class="panel-body chart-body" id="wr-ratio" data-type="chart"></div>
@@ -35,9 +33,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="panel panel-primary ">
-                    <div class="panel-heading"><h4>Statistics</h4></div>
+                    <div class="panel-heading"><h4>Cache Information</h4></div>
                     <div class="panel-body">
                         <form>
                             <div class="form-group">
