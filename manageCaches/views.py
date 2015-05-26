@@ -100,7 +100,7 @@ class CacheForm(forms.Form):
         initial='',
         widget=forms.Select(),
         required=True)
-    hdd = forms.ChoiceField(label="hdd",
+    hdd = forms.ChoiceField(label="src",
         choices=disks(),
         initial='',
         widget=forms.Select(),
@@ -136,7 +136,7 @@ def edit(request, cache_name):
             "block_size": inf["block_size"],
             "eviction": inf["eviction"],
             "ssd": inf["ssd_name"],
-            "hdd": inf["hdd_name"]
+            "src": inf["src_name"]
         }
         context={'form': CacheForm(initial=data)}
         return render(request, "create.html", context)
