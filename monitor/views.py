@@ -34,16 +34,9 @@ def stats(request):
         start = request.POST['start_date']
         end = request.POST['end_date']
 
-        print(start)
-        print(end)
-
         format = "%m/%d/%Y %I:%M %p"
-
         start_dt = datetime.datetime.strptime(start, format)
         end_dt = datetime.datetime.strptime(end, format)
-
-        print(start_dt)
-        print(end_dt)
 
         context = {
             'hello': 'world',
