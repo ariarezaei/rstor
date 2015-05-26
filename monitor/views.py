@@ -114,7 +114,6 @@ def dummy_retrieve_stats(cache_name):
         "throughput_read": round(random.random()*100),
         "throughput_write": round(random.random()*100),
         "read_mean_response": round(random.random()*100),
-        "write_mean_response": round(random.random()*100)
     }
     return context
 
