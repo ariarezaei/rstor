@@ -19,3 +19,5 @@ class Log(models.Model):
     cur_read_time = models.FloatField(default=0)
     cur_reads = models.IntegerField(default=0)
     cur_writes = models.IntegerField(default=0)
+    mean_read_time = models.FloatField(defualt=0)
+    mean_write_time = models.FloatField(default=0)
