@@ -121,10 +121,14 @@ def create(request):
         if request.POST.get("block_size", "XX") != "XX" :
             command = command + " -b " + request.POST.get("block_size")
         command = command + " -c " + request.POST.get("name")
+        command = command + "> status.txt"
         print(command)
         os.system(command)
-        context={'form': CacheForm}
-        return render(request, "create.html", context)
+        data = ""
+        with open("status.txt", "r") as file:
+            data = file.readlines()
+        context={'status': data}
+        return render(request, "status.html", context)
 
 
 
@@ -152,8 +156,11 @@ def edit(request, cache_name):
         command = command + " -c " + request.POST.get("name")
         print(command)
         os.system(command)
-        context={'form': CacheForm, 'cache_name': cache_name}
-        return render(request, "edit.html", context)
+        data = ""
+        with open("status.txt", "r") as file:
+            data = file.readlines()
+        context={'status': data}
+        return render(request, "status.html", context)
 
 def remove(request, cache_name):
     if request.method == u'GET':
@@ -161,5 +168,8 @@ def remove(request, cache_name):
                   "-c " + cache_name
         print(command)
         os.system(command)
-        context={"status": "successful"}
-        return json.dump(context)
+        data = ""
+        with open("status.txt", "r") as file:
+        data = file.readlines()
+        context={'status': data}
+        return render(request, "status.html", context)
