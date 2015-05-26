@@ -192,13 +192,24 @@ function init(num)
 
 function send_info()
 {
-    var cache_name = $('#cache-name').val();
-    var start_date = $('#starting-date').val();
-    var end_date   = $('#ending-date').val();
+    sending_data = {
+        cache_name: $('#cache-name').val(),
+        start_date: $('#starting-date').val(),
+        end_date: $('#ending-date').val()
+    };
 
-    console.log(end_date);
-    console.log(start_date);
-    console.log(cache_name);
+    console.log($('#stat-menu').serialize());
+
+    //$.post("", $('#stat-menu').serialize())
+    //    .done(function(){
+    //        alert('success');
+    //    })
+    //    .fail(function(){
+    //        alert('fail');
+    //    })
+    //    .always(function(){
+    //        console.log('always do this.');
+    //});
 }
 
 function clear_fields()
