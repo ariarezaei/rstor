@@ -146,14 +146,15 @@ def edit(request, cache_name):
         context={'form': CacheForm(initial=data), "cache_name": cache_name}
         return render(request, "edit.html", context)
     if request.method == u'POST':
-        command = "rstor_cli edit " + " -d " + request.POST.get("hdd").rstrip("\n") + " -s " + request.POST.get("ssd").rstrip("\n")
+        command = ""
+        #command = "rstor_cli edit " + " -d " + request.POST.get("hdd").rstrip("\n") + " -s " + request.POST.get("ssd").rstrip("\n")
         if request.POST.get("mode", "XX") != "XX" :
             command = command + " -m " + request.POST.get("mode").rstrip("\n")
         if request.POST.get("eviction", "XX") != "XX" :
             command = command + " -p " + request.POST.get("eviction").rstrip("\n")
-        if request.POST.get("block_size", "XX") != "XX" :
-            command = command + " -b " + request.POST.get("block_size").rstrip("\n")
-        command = command + " -c " + request.POST.get("name").rstrip("\n")
+        #if request.POST.get("block_size", "XX") != "XX" :
+         #   command = command + " -b " + request.POST.get("block_size").rstrip("\n")
+        command = command + " -c " + cache_name.rstrip("\n")
         print(command)
         os.system(command)
         data = ""
