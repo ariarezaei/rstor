@@ -4,6 +4,7 @@ from django import forms
 from subprocess import call
 import json
 import os.path
+import os.system
 # Create your views here.
 
 MODE_CHOICES = (
@@ -121,7 +122,7 @@ def create(request):
             command = command + " -b " + request.POST.get("block_size")
         command = command + " -c " + request.POST.get("name")
         print(command)
-        call(command)
+        os.system(command)
         context={'form': CacheForm}
         return render(request, "create.html", context)
 
@@ -150,7 +151,7 @@ def edit(request, cache_name):
             command = command + " -b " + request.POST.get("block_size")
         command = command + " -c " + request.POST.get("name")
         print(command)
-        call(command)
+        os.system(command)
         context={'form': CacheForm, 'cache_name': cache_name}
         return render(request, "edit.html", context)
 
@@ -159,6 +160,6 @@ def remove(request, cache_name):
         command = "rstor_cli delete " \
                   "-c " + cache_name
         print(command)
-        call(command)
+        os.system(command)
         context={"status": "successful"}
         return json.dump(context)
