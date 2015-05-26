@@ -30,7 +30,8 @@ def stats(request):
         print("Hello we are here in the POST")
 
         context = {
-            'hello': 'world'
+            'hello': 'world',
+            'goodbye': 'my lover'
         }
 
         return HttpResponse(json.dumps(context), content_type="application/json")
