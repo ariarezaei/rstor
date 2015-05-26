@@ -27,7 +27,13 @@ def index(request):
 
 def stats(request):
     if request.method == u'POST':
-        return HttpResponseNotFound("Sorry. We could not find the page you requested. Please check the address and try again.")
+        print("Hello we are here in the POST")
+
+        context = {
+            'hello': 'world'
+        }
+
+        return HttpResponse(json.dumps(context), content_type="application/json")
 
     caches = cache_list()
 

@@ -198,18 +198,16 @@ function send_info()
         end_date: $('#ending-date').val()
     };
 
-    console.log($('#stat-menu').serialize());
-
-    //$.post("", $('#stat-menu').serialize())
-    //    .done(function(){
-    //        alert('success');
-    //    })
-    //    .fail(function(){
-    //        alert('fail');
-    //    })
-    //    .always(function(){
-    //        console.log('always do this.');
-    //});
+    $.post("", sending_data)
+        .done(function(){
+            alert('success');
+        })
+        .fail(function(){
+            alert('fail');
+        })
+        .always(function(){
+            console.log('always do this.');
+    });
 }
 
 function clear_fields()
