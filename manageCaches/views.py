@@ -155,6 +155,7 @@ def edit(request, cache_name):
         #if request.POST.get("block_size", "XX") != "XX" :
          #   command = command + " -b " + request.POST.get("block_size").rstrip("\n")
         command = command + " -c " + cache_name.rstrip("\n")
+        command = command + "> status.txt"
         print(command)
         os.system(command)
         data = ""
@@ -166,6 +167,7 @@ def edit(request, cache_name):
 def remove(request, cache_name):
     if request.method == u'GET':
         command = "rstor_cli delete " + "-c " + cache_name.rstrip("\n")
+        command = command + "> status.txt"
         print(command)
         os.system(command)
         data = ""
