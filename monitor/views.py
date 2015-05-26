@@ -24,7 +24,7 @@ def index(request):
 
     return render(request, 'index.html', context)
 
-
+@csrf_exempt
 def stats(request):
     if request.method == u'POST':
         print("Hello we are here in the POST")
