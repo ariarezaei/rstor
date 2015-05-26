@@ -6,8 +6,8 @@ from django.db import models
 
 
 class Log(models.Model):
-    cache = models.TextField()
     datetime = models.DateTimeField()
+    cache = models.TextField()
     read_hit_rate = models.FloatField(default=0)
     write_hit_rate = models.FloatField(default=0)
     throughput_write = models.FloatField(default=0)
