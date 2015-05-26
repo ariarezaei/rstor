@@ -41,6 +41,8 @@ def stats(request):
         res = Log.objects.exclude(datetime__lt=start_dt).exclude(datetime__gt=end_dt)
         print(res.count())
 
+        print(res.values())
+
         context = {
             'hello': 'world',
             'goodbye': 'my lover'
