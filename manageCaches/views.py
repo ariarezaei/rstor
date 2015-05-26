@@ -1,4 +1,3 @@
-from Crypto.Random.random import choice
 from django.core.context_processors import request
 from django.shortcuts import render
 from django import forms
