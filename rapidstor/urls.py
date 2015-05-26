@@ -10,4 +10,5 @@ urlpatterns = patterns('',
 
     url(r'^monitor/', include('monitor.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^manage/', include('manageCaches.urls'))
 )

@@ -6,6 +6,11 @@ from subprocess import call
 db = sqlite3.connect("db.sqlite3")
 c = db.cursor()
 
+last_reads = dict()
+last_writes = dict()
+last_read_time = dict()
+last_write_time = dict()
+
 
 def store_stat(cache):
     context = retrieve_stats(cache)
@@ -15,24 +20,43 @@ def store_stat(cache):
     throughput_read = str(context["read_throughput"]) + ","
     mean_write_time = str(context["write_mean_response"])+ ","
     mean_read_time = str(context["read_mean_response"])+ ","
-    read_requests = str(context["reads"])+ ","
-    write_requests = str(context["writes"])
-    command= "INSERT INTO monitor_log(time, date, cache, read_hit_rate, write_hit_rate, throughput_write, throughput_read, tot_write_time, tot_read_time, read_requests, write_requests) VALUES (CURRENT_TIME ,CURRENT_DATE," + "'" + cache + "'," + read_hit_rate + write_hit_rate + throughput_write + throughput_read + mean_write_time + mean_read_time + read_requests + write_requests +" )"
+    read_requests = str(context["reads"]) + ","
+    write_requests = str(context["writes"]) + ","
+    cur_read_time = str(context["cur_read_time"]) + ","
+    cur_write_time =  str(context["cur_write_time"]) + ","
+    cur_reads = str(context["cur_reads"]) + ","
+    cur_writes = str(context["cur_writes"])
+    cache = "'" + cache + "',"
+    command= "INSERT INTO monitor_log(time, date, cache, read_hit_rate, write_hit_rate, throughput_write, throughput_read, tot_write_time, tot_read_time, read_requests, write_requests, cur_write_time, cur_read_time, cur_reads, cur_writes) VALUES (CURRENT_TIME ,CURRENT_DATE," + cache  + read_hit_rate + write_hit_rate + throughput_write + throughput_read + mean_write_time + mean_read_time + read_requests + write_requests + cur_write_time + cur_read_time + cur_reads + cur_writes + " )"
     return command
 
 
 def retrieve_stats(cache_name):
     dic = f2d("/proc/rapidstor/"+cache_name+"/stats")
+    if cache_name not in last_reads:
+        last_reads[cache_name] = dic["reads"]
+        last_writes[cache_name] = dic["writes"]
+        last_read_time[cache_name] = dic["rdtime_ms"]
+        last_write_time[cache_name] = dic["wrtime_ms"]
     context = {
         "reads": dic["ssd_reads"],
         "writes": dic["ssd_writes"],
         "read_hit_rate": dic["read_hit_pct"],
         "write_hit_rate": dic["write_hit_pct"],
-        "read_throughput": dic["ssd_reads"]/dic["rdtime_ms"]*1000,
-        "write_throughput": dic["ssd_writes"]/dic["wrtime_ms"]*1000,
-        "read_mean_response": dic["rdtime_ms"]/dic["reads"],
-        "write_mean_response": dic["wrtime_ms"]/dic["writes"]
+        "read_throughput": 0 if dic["rdtime_ms"] == last_read_time[cache_name] else 1000*(dic["reads"] - last_reads[cache_name])/(dic["rdtime_ms"] - last_read_time[cache_name]),
+        "write_throughput": 0 if dic["wrtime_ms"] == last_write_time[cache_name] else 1000*(dic["writes"] - last_writes[cache_name])/(dic["wrtime_ms"] - last_write_time[cache_name]),
+        "read_mean_response": 0 if dic["reads"] == last_reads[cache_name] else (dic["rdtime_ms"] - last_read_time[cache_name])/(dic["reads"] - last_reads[cache_name]),
+        "write_mean_response": 0 if dic["writes"] - last_writes[cache_name] else (dic["wrtime_ms"] - last_write_time[cache_name])/(dic["writes"] - last_writes[cache_name]),
+        "cur_reads": dic["reads"] - last_reads[cache_name],
+        "cur_writes": dic["writes"] - last_writes[cache_name],
+        "cur_read_time": dic["rdtime_ms"] - last_read_time[cache_name],
+        "cur_write_time": dic["wrtime_ms"] - last_write_time[cache_name]
     }
+    last_reads[cache_name] = dic["reads"]
+    last_writes[cache_name] = dic["writes"]
+    last_read_time[cache_name] = dic["rdtime_ms"]
+    last_write_time[cache_name] = dic["wrtime_ms"]
+
     return context
 
 

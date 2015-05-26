@@ -1,0 +1,37 @@
+.wrapper
+{
+    padding-left: 30px;
+}
+
+.section-header
+{}
+
+
+.page-header
+{
+    padding-bottom: 15px;
+    border-bottom: 1px solid #DDDAD5;
+    margin-bottom: 25px;
+}
+
+.chart-form
+{
+    border-left: 1px solid #DDDAD5;
+}
+
+.chart-body
+{
+    height: 300px;
+}
+
+.button-delimiter
+{
+    border-top: 1px solid #DDDAD5;
+    padding-top: 20px;
+    margin-top: 10px;
+}
+
+.cache-selector{
+    padding: 7px 7px;
+    height: auto;
+}

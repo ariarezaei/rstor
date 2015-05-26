@@ -1,10 +1,89 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load staticfiles %}
 
-</body>
-</html>
+{% block extra_css %}
+    <link href="{% static "css/stats.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_script %}
+    <script src="{% static "js/stats.js" %}"></script>
+    <script src="{% static "js/highcharts.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="wrapper">
+        <div class="row">
+            <h1 class="page-header">Dashboard Overview</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="panel panel-primary">
+                        <div class="panel-body chart-body" id="wr-ratio" data-type="chart"></div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-body chart-body" id="wr-throughput" data-type="chart"></div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-body chart-body" id="wr-response" data-type="chart"></div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-body chart-body" id="wr-request" data-type="chart"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-primary ">
+                    <div class="panel-heading"><h4>Statistics</h4></div>
+                    <div class="panel-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="cache-name"> Choose target cache<span class="text-danger"> *</span></label>
+                                <select id="cache-name" class="form-control cache-selector" onchange="start_updates()">
+                                    <option>Please choose a cache</option>
+                                    {% for cache in caches %}
+                                        <option>{{ cache }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr class="active">
+                                <th>Main Disk Name</th>
+                                <th id="main_disk_name">-</th>
+                            </tr>
+                            <tr>
+                                <th>Main Disk Size</th>
+                                <td id="main_disk_size">-</td>
+                            </tr>
+                            <tr class="active">
+                                <th>Cache Disk Name</th>
+                                <th id="cache_disk_name">-</th>
+                            </tr>
+                            <tr>
+                                <th>Cache State</th>
+                                <th id="cache_state">-</th>
+                            </tr>
+                            <tr>
+                                <th>Cache Type</th>
+                                <td id="cache_type">-</td>
+                            </tr>
+                            <tr>
+                                <th>Cache Size</th>
+                                <td id="cache_size">-</td>
+                            </tr>
+                            <tr>
+                                <th>Block Size</th>
+                                <td id="block_size">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
