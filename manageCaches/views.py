@@ -113,14 +113,14 @@ def create(request):
         context={'form': CacheForm}
         return render(request, "create.html", context)
     if request.method == u'POST':
-        command = "rstor_cli create " + " -d " + request.POST.get("hdd") + " -s " + request.POST.get("ssd")
+        command = "rstor_cli create " + " -d " + request.POST.get("hdd").rstrip("\n") + " -s " + request.POST.get("ssd").rstrip("\n")
         if request.POST.get("mode", "XX") != "XX" :
-            command = command + " -m " + request.POST.get("mode")
+            command = command + " -m " + request.POST.get("mode").rstrip("\n")
         if request.POST.get("eviction", "XX") != "XX" :
-            command = command + " -p " + request.POST.get("eviction")
+            command = command + " -p " + request.POST.get("eviction").rstrip("\n")
         if request.POST.get("block_size", "XX") != "XX" :
-            command = command + " -b " + request.POST.get("block_size")
-        command = command + " -c " + request.POST.get("name")
+            command = command + " -b " + request.POST.get("block_size").rstrip("\n")
+        command = command + " -c " + request.POST.get("name").rstrip("\n")
         command = command + "> status.txt"
         print(command)
         os.system(command)
@@ -141,19 +141,19 @@ def edit(request, cache_name):
             "block_size": inf["block_size"],
             "eviction": inf["eviction"],
             "ssd": inf["ssd_name"],
-            "src": inf["src_name"]
+            "hdd": inf["src_name"]
         }
         context={'form': CacheForm(initial=data)}
         return render(request, "create.html", context)
     if request.method == u'POST':
-        command = "rstor_cli edit " + " -d " + request.POST.get("hdd") + " -s " + request.POST.get("ssd")
+        command = "rstor_cli edit " + " -d " + request.POST.get("hdd").rstrip("\n") + " -s " + request.POST.get("ssd").rstrip("\n")
         if request.POST.get("mode", "XX") != "XX" :
-            command = command + " -m " + request.POST.get("mode")
+            command = command + " -m " + request.POST.get("mode").rstrip("\n")
         if request.POST.get("eviction", "XX") != "XX" :
-            command = command + " -p " + request.POST.get("eviction")
+            command = command + " -p " + request.POST.get("eviction").rstrip("\n")
         if request.POST.get("block_size", "XX") != "XX" :
-            command = command + " -b " + request.POST.get("block_size")
-        command = command + " -c " + request.POST.get("name")
+            command = command + " -b " + request.POST.get("block_size").rstrip("\n")
+        command = command + " -c " + request.POST.get("name").rstrip("\n")
         print(command)
         os.system(command)
         data = ""
@@ -164,8 +164,7 @@ def edit(request, cache_name):
 
 def remove(request, cache_name):
     if request.method == u'GET':
-        command = "rstor_cli delete " \
-                  "-c " + cache_name
+        command = "rstor_cli delete " + "-c " + cache_name.rstrip("\n")
         print(command)
         os.system(command)
         data = ""
