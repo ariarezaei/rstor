@@ -192,8 +192,7 @@ def retrieve_db(request, cache_name):
         'throughput_write': data['throughput_write'],
         'read_mean_response': data['cur_read_time'],
         'write_mean_response': data['cur_write_time'],
-        'date': str(data['date']),
-        'time': str(data['time'])
+        'datetime': data['datetime']
     }
     return context
 
