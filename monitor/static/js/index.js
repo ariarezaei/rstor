@@ -195,7 +195,7 @@ function init(num)
 // Loads cache information when a cache is selected
 function load_cache_info(cache_name)
 {
-    $.get( cache_name, function(result){
+    $.get( "config/" + cache_name, function(result){
         console.log("Succesfully acquired cache info");
         console.log(result);
         $("#main_disk_name").html(result['main_disk_name']);
