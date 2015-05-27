@@ -29,29 +29,31 @@
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top top-navbar" role="navigation" style="margin-bottom: 0px;">
-        <div class="container-fluid col-md-offset-3">
+        <div class="container-fluid col-md-offset-2">
             <div class="navbar-header">
-                <a class="navbar-brand" href="">RStor</a>
+                <a class="navbar-brand" href="">RapidStor</a>
             </div>
         </div>
-        <nav class="side-nav">
-            <div class="list-group">
-                <a href="#" class="list-group-item active nav-item">
-                    <i class="fa  fa-tachometer fa-fw"></i>&nbsp;Dashboard
-                </a>
-                <a href="#" class="list-group-item nav-item">
-                    <i class="fa  fa-gear fa-fw"></i>&nbsp;Charts
-                </a>
-                <a href="#" class="list-group-item nav-item">
-                    <i class="fa  fa-bar-chart fa-fw"></i>&nbsp;Statistics
-                </a>
-            </div>
-        </nav>
+{#        <nav class="side-nav">#}
+{#            <div class="list-group">#}
+{#                <a href="#" class="list-group-item active nav-item">#}
+{#                    <i class="fa  fa-tachometer fa-fw"></i>&nbsp;Dashboard#}
+{#                </a>#}
+{#                <a href="#" class="list-group-item nav-item">#}
+{#                    <i class="fa  fa-gear fa-fw"></i>&nbsp;Charts#}
+{#                </a>#}
+{#                <a href="#" class="list-group-item nav-item">#}
+{#                    <i class="fa  fa-bar-chart fa-fw"></i>&nbsp;Statistics#}
+{#                </a>#}
+{#            </div>#}
+{#        </nav>#}
     </nav>
-    <div class="row" id="content-wrapper">
+    <div class="row">
         <!-- here goes the content of the page -->
-        {% block content %}
-        {% endblock %}
+        <div class="col-lg-8 col-lg-offset-2">
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
     <!-- The header goes here -->
 
