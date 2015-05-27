@@ -200,7 +200,7 @@ function send_info()
 
     $.post("", sending_data)
         .done(function(data){
-            console.log(data);
+            turnOffLoading();
 
             set_chart_data(
                 'wr-throughput',
