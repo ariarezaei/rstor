@@ -13,7 +13,7 @@ $(function() {
 
     Highcharts.setOptions({
         lang:{
-            loading: "Please select a cache name."
+            loading: "Please select a cache."
         }
     });
 
