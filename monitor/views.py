@@ -28,7 +28,6 @@ def index(request):
 @csrf_exempt
 def stats(request):
     if request.method == u'POST':
-        print("Hello we are here in the POST")
         cache = request.POST['cache_name']
         start = request.POST['start_date']
         end = request.POST['end_date']
@@ -38,7 +37,6 @@ def stats(request):
         end_dt = datetime.datetime.strptime(end, format)
 
         res = Log.objects.filter(cache=cache).exclude(datetime__lt=start_dt).exclude(datetime__gt=end_dt)
-        print(res.count())
 
         print(res.values('datetime'))
 
