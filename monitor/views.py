@@ -16,11 +16,10 @@ def index(request):
     if request.method == u'POST':
         return HttpResponseNotFound("Sorry. We could not find the page you requested. Please check the address and try again.")
 
-    #TODO: find all caches and put it in the array below
     caches = cache_list()
 
     context = {
-        'title': "Rapid Storage Monitoring Portal",
+        'title': "Rapidstor -- Live Statistics",
         'caches': caches
     }
 
@@ -38,10 +37,10 @@ def stats(request):
         start_dt = datetime.datetime.strptime(start, format)
         end_dt = datetime.datetime.strptime(end, format)
 
-        res = Log.objects.exclude(datetime__lt=start_dt).exclude(datetime__gt=end_dt)
+        res = Log.objects.filter(cache=cache).exclude(datetime__lt=start_dt).exclude(datetime__gt=end_dt)
         print(res.count())
 
-        print(res.values())
+        print(res.values('datetime'))
 
         context = {
             'hello': 'world',
@@ -53,7 +52,7 @@ def stats(request):
     caches = cache_list()
 
     context = {
-        'title': 'Rapid Storage Monitoring Portal',
+        'title': 'Rapidstor - Statistics',
         'caches': caches
     }
 
