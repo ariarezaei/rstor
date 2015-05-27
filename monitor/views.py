@@ -59,24 +59,16 @@ def stats(request):
         for log in log_set:
             log_dt = log.datetime.timestamp()
             res['w-throughput'].append((log_dt, log.throughput_write))
-            print("1 done")
             res['r-throughput'].append((log_dt, log.throughput_read))
-            print("2 done")
 
             res['w-hitratio'].append((log_dt, log.write_hit_rate))
-            print("3 done")
             res['r-hitratio'].append((log_dt, log.read_hit_rate))
-            print("4 done")
 
             res['w-response'].append((log_dt, log.cur_write_time))
-            print("5 done")
             res['r-response'].append((log_dt, log.cur_read_time))
-            print("6 done")
 
             res['w-request'].append((log_dt, log.write_requests))
-            print("7 done")
             res['r-request'].append((log_dt, log.read_requests))
-            print("8 done")
 
         return HttpResponse(json.dumps(res), content_type="application/json")
 
