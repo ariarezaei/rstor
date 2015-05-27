@@ -167,6 +167,7 @@ function init(num)
 {
     var dataWrite = [],
         dataRead = [];
+
     for (var i=num*(-1);i<0;i++)
     {
         dataWrite.push({
@@ -179,6 +180,7 @@ function init(num)
             y: 0
         });
     }
+
     for (i=0;i<names.length;i++)
     {
         console.log("Initializing " + names[i]);
@@ -228,7 +230,8 @@ function start_updates(interval)
 }
 
 // Adds a set of points to a given chart
-function add_point(write, read, id) {
+function add_point(write, read, id)
+{
     // read comes first
     // write comes second
 

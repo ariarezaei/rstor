@@ -36,16 +36,37 @@ def stats(request):
         start_dt = datetime.datetime.strptime(start, format)
         end_dt = datetime.datetime.strptime(end, format)
 
-        res = Log.objects.filter(cache=cache).exclude(datetime__lt=start_dt).exclude(datetime__gt=end_dt)
+        log_set = Log.objects.filter(cache=cache).exclude(datetime__lt=start_dt).exclude(datetime__gt=end_dt)
 
-        print(res.values('datetime'))
+        res = {
+            'w-throughput': [],
+            'r-throughput': [],
 
-        context = {
-            'hello': 'world',
-            'goodbye': 'my lover'
+            'w-hitratio': [],
+            'r-hitratio': [],
+
+            'w-response': [],
+            'r-response': [],
+
+            'w-request': [],
+            'r-request': []
         }
 
-        return HttpResponse(json.dumps(context), content_type="application/json")
+        for log in log_set:
+            log_dt = log['datetime'].timestamp()
+            res['w-throughput'].append((log_dt, log['throughput_write']))
+            res['r-throughput'].append((log_dt, log['throughput_read']))
+
+            res['w-hitratio'].append((log_dt, log['write_hit_ratio']))
+            res['r-hitratio'].append((log_dt, log['read_hit_ratio']))
+
+            res['w-response'].append((log_dt, log['cur_write_time']))
+            res['r-response'].append((log_dt, log['cur_read_time']))
+
+            res['w-request'].append((log_dt, log['write_requests']))
+            res['r-request'].append((log_dt, log['read_requests']))
+
+        return HttpResponse(json.dumps(res), content_type="application/json")
 
     caches = cache_list()
 

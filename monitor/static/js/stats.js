@@ -199,8 +199,9 @@ function send_info()
     };
 
     $.post("", sending_data)
-        .done(function(){
+        .done(function(data){
             alert('success');
+            console.log(data);
         })
         .fail(function(){
             alert('fail');
@@ -212,5 +213,17 @@ function send_info()
 
 function clear_fields()
 {
-    // TODO: clear menu fields
+    $('#cache-name').val("");
+    $('#starting-date').val("");
+    $('#ending-date').val("");
+}
+
+function set_chart_data(chart_name, write_data, read_data)
+{
+    var chart = $('#' + chart_name).highcharts();
+
+    chart.series[0].setData(write_data);
+    chart.series[1].setData(read_data);
+
+    chart.redraw();
 }
