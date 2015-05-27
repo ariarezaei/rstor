@@ -200,8 +200,28 @@ function send_info()
 
     $.post("", sending_data)
         .done(function(data){
-            alert('success');
             console.log(data);
+
+            set_chart_data(
+                'wr-throughput',
+                data['w-throughput'],
+                data['r-throughput']
+            );
+            set_chart_data(
+                'wr-ratio',
+                data['w-hitratio'],
+                data['r-hitratio']
+            );
+            set_chart_data(
+                'wr-response',
+                data['w-response'],
+                data['r-response']
+            );
+            set_chart_data(
+                'wr-request',
+                data['w-request'],
+                data['r-request']
+            );
         })
         .fail(function(){
             alert('fail');
