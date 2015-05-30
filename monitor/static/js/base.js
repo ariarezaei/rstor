@@ -1,4 +1,4 @@
 function edit_page()
 {
-    console.log($('#edit-cache-name').val());
+    windo.location.href="/manage/edit" + $('#edit-cache-name').val();
 }
