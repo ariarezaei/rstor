@@ -1,5 +1,5 @@
 from django import forms
-from manageCaches.views import cache_list, disks
+from monitor.views import cache_list, disks
 
 MODE_CHOICES = (
         ("wb", "wb"),
