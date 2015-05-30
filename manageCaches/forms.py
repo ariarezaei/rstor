@@ -65,5 +65,5 @@ class CacheForm(forms.Form):
 class EditForm(CacheForm):
     name = forms.CharField(label='Cache Name', max_length=30, required=True,
                            error_messages={"required": "Please enter the cache name."},
-                           widget=forms.ChoiceField(attrs={'class': FIELD_ATTR}),
+                           widget=forms.Select(attrs={'class': FIELD_ATTR}),
                            choices=CACHES)
