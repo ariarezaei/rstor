@@ -28,34 +28,34 @@ class CacheForm(forms.Form):
 
     name = forms.CharField(label='Cache Name', max_length=30, required=True,
                            error_messages={"required": "Please enter the cache name."},
-                           widget=forms.TextInput(attrs={'class': 'form-control'}))
+                           widget=forms.TextInput(attrs={'class': 'form-control cache-field'}))
     mode = forms.ChoiceField(label="Mode",
         choices=MODE_CHOICES,
         initial='',
-        widget=forms.Select(attrs={'class': 'form-control'}),
+        widget=forms.Select(attrs={'class': 'form-control cache-field'}),
         required=False
     )
     block_size = forms.ChoiceField(label="Block Size",
         choices=BODE_CHOICES,
         initial='',
-        widget=forms.Select(attrs={'class': 'form-control'}),
+        widget=forms.Select(attrs={'class': 'form-control cache-field'}),
         required=False
     )
     eviction = forms.ChoiceField(label="Eviction",
         choices=PODE_CHOICES,
         initial='',
-        widget=forms.Select(attrs={'class': 'form-control'}),
+        widget=forms.Select(attrs={'class': 'form-control cache-field'}),
         required=False
     )
     ssd = forms.ChoiceField(label="SSD",
         choices=disks(),
         initial='',
-        widget=forms.Select(attrs={'class': 'form-control'}),
+        widget=forms.Select(attrs={'class': 'form-control cache-field'}),
         required=True
     )
     hdd = forms.ChoiceField(label="SRC",
         choices=disks(),
         initial='',
-        widget=forms.Select(attrs={'class': 'form-control'}),
+        widget=forms.Select(attrs={'class': 'form-control cache-field'}),
         required=True
     )
