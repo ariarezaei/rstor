@@ -1,5 +1,5 @@
 from django import forms
-from monitor.views import cache_list, disks
+from manageCaches.views import cache_list, disks
 
 MODE_CHOICES = (
         ("wb", "wb"),
@@ -26,34 +26,32 @@ class CacheForm(forms.Form):
     error_css_class = 'text-danger'
 
     name = forms.CharField(label='Cache Name', max_length=30, required=True,
-                           name="Cache Name",
                            error_message={"required": "Please enter the cache name."})
-    mode = forms.ChoiceField(label="mode",
+    mode = forms.ChoiceField(label="Mode",
         choices=MODE_CHOICES,
         initial='',
         widget=forms.Select(),
-        required=False,
-        label="Mode"
+        required=False
     )
-    block_size = forms.ChoiceField(label="block size",
+    block_size = forms.ChoiceField(label="Block Size",
         choices=BODE_CHOICES,
         initial='',
         widget=forms.Select(),
         required=False
     )
-    eviction = forms.ChoiceField(label="eviction",
+    eviction = forms.ChoiceField(label="Eviction",
         choices=PODE_CHOICES,
         initial='',
         widget=forms.Select(),
         required=False
     )
-    ssd = forms.ChoiceField(label="ssd",
+    ssd = forms.ChoiceField(label="SSD",
         choices=disks(),
         initial='',
         widget=forms.Select(),
         required=True
     )
-    hdd = forms.ChoiceField(label="src",
+    hdd = forms.ChoiceField(label="SRC",
         choices=disks(),
         initial='',
         widget=forms.Select(),
