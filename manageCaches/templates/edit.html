@@ -9,14 +9,16 @@
 {% endblock %}
 
 {% block content %}
-    <form id="addCache" enctype="multipart/form-data" action="/manage/edit/{{ cache_name }}" method="post" style="margin-right: 30px;">
-        <table>
-
-            {{ form.as_table }}
-
-        </table>
-
+    <form id="addCache" enctype="multipart/form-data" action="/manage/edit/{{ cache_name }}" method="post" class="horizontal-form">
+        {% for field in form %}
+            <div class="form-group">
+                <div class="col-sm-12">{{ field.errors }}</div>
+                <div class="col-md-3">{{ field.label_tag }}</div>
+                <div class="col-md-9">{{ field }}</div>
+            </div>
+        {% endfor %}
         {% csrf_token %}
-         <button type="submit" class="btn btn-default">Edit Cache</button>
+        <div class="col-lg-6"><button type="submit" class="btn btn-default btn-block">Submit</button></div>
+        <div class="col-lg-6"><button type="submit" class="btn btn-default btn-block">Clear</button></div>
     </form>
 {% endblock %}

@@ -5,25 +5,9 @@ from subprocess import call
 import json
 import os.path
 import os
+from forms import CacheForm
 # Create your views here.
 
-MODE_CHOICES = (
-        ("wb", "wb"),
-        ("wt", "wt"),
-        ("ro", "ro")
-    )
-
-PODE_CHOICES = (
-        ("smart", "smart"),
-        ("rand", "rand"),
-        ("fifo", "fifo"),
-        ("lru", "lru")
-    )
-BODE_CHOICES= (
-        ("2048", "2048"),
-        ("4096", "4096"),
-        ("8192", "8192")
-)
 
 def disks():
     call("./Disks.sh")
@@ -77,35 +61,6 @@ def fileToDicString(file_name):
         d[l[0]] = l[1]
     return d
 
-
-
-class CacheForm(forms.Form):
-    name = forms.CharField(label='Cache Name', max_length=30, required=True)
-    mode = forms.ChoiceField(label="mode",
-        choices=MODE_CHOICES,
-        initial='',
-        widget=forms.Select(),
-        required=False)
-    block_size = forms.ChoiceField(label="block size",
-        choices=BODE_CHOICES,
-        initial='',
-        widget=forms.Select(),
-        required=False)
-    eviction = forms.ChoiceField(label="eviction",
-        choices=PODE_CHOICES,
-        initial='',
-        widget=forms.Select(),
-        required=False)
-    ssd = forms.ChoiceField(label="ssd",
-        choices=disks(),
-        initial='',
-        widget=forms.Select(),
-        required=True)
-    hdd = forms.ChoiceField(label="src",
-        choices=disks(),
-        initial='',
-        widget=forms.Select(),
-        required=True)
 
 
 def create(request):
