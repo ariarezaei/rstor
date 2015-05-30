@@ -80,17 +80,24 @@ def create(request):
                 command = command + " -b " + request.POST.get("block_size").rstrip("\n")
             command = command + " -c " + request.POST.get("name").rstrip("\n")
             command = command + "> status.txt"
-            print(command)
             os.system(command)
-            success_message = parse_status_message('status.txt')
-            print(success_message)
-            context={
-                'form': CacheForm,
-                'title': 'RapidStor - Create a Cache',
-                'caches': cache_list(),
-                'success_message': success_message
+            (status, message) = parse_status_message('status.txt')
+            if status == 'success':
+                context={
+                    'form': CacheForm,
+                    'title': 'RapidStor - Create a Cache',
+                    'caches': cache_list(),
+                    'success_message': message
+                    }
+                return render(request, "create.html", context)
+            else:
+                context={
+                    'form': form,
+                    'title': 'RapidStor - Create a Cache',
+                    'caches': cache_list(),
+                    'error_message': message
                 }
-            return render(request, "create.html", context)
+                return render(request, 'create.html', context)
         else:
             error_message = parse_status_message('status.txt')
             print(error_message)
@@ -98,7 +105,7 @@ def create(request):
                 'form': form,
                 'title': 'RapidStor - Create a Cache',
                 'caches': cache_list(),
-                'error_message': error_message
+                'error_message': 'The form was invalid.'
             }
             return render(request, "create.html", context)
 
@@ -167,4 +174,7 @@ def parse_status_message(file):
                 continue
             else:
                 res += line.replace('\n', '<br>')
-    return res
+    if 'success' in res:
+        return ('success', res)
+    else:
+        return ('fail', res)
