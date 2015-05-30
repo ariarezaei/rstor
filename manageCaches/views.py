@@ -82,7 +82,10 @@ def create(request):
         data = ""
         with open("status.txt", "r") as file:
             data = file.readlines()
-        context={'status': data}
+        context={
+            'status': data,
+            'title': 'RapidStor - Status Page',
+            'caches': cache_list()}
         return render(request, "status.html", context)
 
 
