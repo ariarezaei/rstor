@@ -17,12 +17,11 @@
                 <div class="form-group form-field">
                     <div class="col-sm-12">{{ field.errors }}</div>
                     <label class="control-label col-lg-3" for="{{ field.auto_id }}">{{ field.label }}</label>
-                    <div class="col-lg-9">{{ field }}</div>
-                </div>
+                    {{ field }}
             {% endfor %}
             {% csrf_token %}
             <div class="row" style="margin-top:10px;">
-                <div class="btn-group btn-group-md col-lg-offset-3 col-lg-9" role="group" style="margin-top: 5%;">
+                <div class="btn-group btn-group-md col-lg-offset-3 col-lg-9" role="group" style="margin-top: 2%;">
                     <button type="submit" class="btn btn-primary btn-lg col-lg-6">Submit</button>
                     <button type="button" class="btn btn-primary btn-lg col-lg-6">Clear</button>
                 </div>
