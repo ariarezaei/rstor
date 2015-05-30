@@ -4,8 +4,7 @@ from subprocess import call
 import json
 import os.path
 import os
-from forms import CacheForm
-# Create your views here.
+from manageCaches.forms import CacheForm
 
 
 def disks():
