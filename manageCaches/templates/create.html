@@ -19,11 +19,11 @@
     </div>
     <div class="col-lg-6 col-lg-offset-3">
         {% if error_message %}
-            <p>{{ error_message }}</p>
+            <p><b>{{ error_message }}</b></p>
         {% endif %}
 
         {% if success_message %}
-            <p>{{ success_message }}</p>
+            <p><b>{{ success_message }}</b></p>
         {% endif %}
         <form class="form-horizontal" id="cache-create-form" enctype="multipart/form-data" action="/manage/create" method="post">
             {% for field in form %}
