@@ -12,7 +12,7 @@ last_writes = dict()
 last_read_time = dict()
 last_write_time = dict()
 last_ssd_reads = dict()
-lsdt_ssd_writes = dict()
+last_ssd_writes = dict()
 
 
 def store_stat(cache):
@@ -41,8 +41,8 @@ def retrieve_stats(cache_name):
         last_writes[cache_name] = dic["writes"]
         last_read_time[cache_name] = dic["rdtime_ms"]
         last_write_time[cache_name] = dic["wrtime_ms"]
-	last_ssd_reads[cache_name] = dic["ssd_reads"]
-	last_ssd_writes[cache_name] = dic["ssd_writes"]
+        last_ssd_reads[cache_name] = dic["ssd_reads"]
+        last_ssd_writes[cache_name] = dic["ssd_writes"]
     context = {
         "reads": dic["ssd_reads"] - last_ssd_reads[cache_name],
         "writes": dic["ssd_writes"] - last_ssd_writes[cache_name],
@@ -90,15 +90,15 @@ db.close()
 
 def store():
   threading.Timer(5, store).start()
-   call('./caches.sh')
-   f = open('caches.txt', 'r')
+  call('./caches.sh')
+  f = open('caches.txt', 'r')
 
-   for line in f:
-       cache = line.rstrip("\n")
-       print(cache)
-       command = store_stat(cache)
-       c.execute(command)
-       db.commit()
+  for line in f:
+      cache = line.rstrip("\n")
+      print(cache)
+      command = store_stat(cache)
+      c.execute(command)
+      db.commit()
 
 
 store()
