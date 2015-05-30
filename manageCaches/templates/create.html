@@ -19,7 +19,15 @@
     </div>
     <div class="col-lg-6 col-lg-offset-3">
         {% if error_message %}
-            <p><b>{{ error_message }}</b></p>
+            <div class="row">
+                <div class="col-lg-9 col-lg-offset-3">
+                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 id="creation-error">Cache creation failed!</h4>
+                        <p>{{ error_message|escape }}</p>
+                    </div>
+                </div>
+            </div>
         {% endif %}
 
         {% if success_message %}
@@ -27,8 +35,8 @@
                 <div class="col-lg-9 col-lg-offset-3">
                     <div class="alert alert-success alert-dismissible fade in" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        <h4 id="creation-error">Cache creation failed!</h4>
-                        <p>{{ success_message }}</p>
+                        <h4 id="creation-error">Cache was successfully created!</h4>
+                        <p>{{ success_message|escape }}</p>
                     </div>
                 </div>
             </div>
