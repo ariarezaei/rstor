@@ -14,12 +14,12 @@
             {% for field in form %}
                 <div class="form-group">
                     <div class="col-sm-12">{{ field.errors }}</div>
-                    <div class="col-md-3">{{ field.label_tag }}</div>
-                    <div class="col-md-9">{{ field }}</div>
+                    <div class="col-lg-3">{{ field.label_tag }}</div>
+                    <div class="col-lg-9">{{ field }}</div>
                 </div>
             {% endfor %}
             {% csrf_token %}
-            <div class="btn-group btn-group-lg col-lg-offset-3" role="group">
+            <div class="btn-group btn-group-md col-lg-offset-3" role="group">
                 <button type="submit" class="btn btn-primary btn-lg col-lg-6">Submit</button>
                 <button type="submit" class="btn btn-primary btn-lg col-lg-6">Clear</button>
             </div>
