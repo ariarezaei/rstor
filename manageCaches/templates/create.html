@@ -17,7 +17,7 @@
                 <div class="form-group form-field">
                     <div class="col-sm-12">{{ field.errors }}</div>
                     <label class="control-label col-lg-3" for="{{ field.auto_id }}">{{ field.label }}</label>
-                    {{ field }}
+                    <div class="col-sm-9">{{ field }}</div>
             {% endfor %}
             {% csrf_token %}
             <div class="row" style="margin-top:10px;">
