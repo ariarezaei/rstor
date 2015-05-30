@@ -54,22 +54,31 @@
             </div>
         </div>
     </nav>
-    
+
 
     <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="modal-title">Modal title</h4>
+                    <h4 class="modal-title" id="modal-title">Select the cache</h4>
                 </div>
-            <div class="modal-body">
-                Hello world.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="edit-cache-name">Cache Name</label>
+                            <select class="form-control" id="edit-cache-name">
+                                {% for cache in caches %}
+                                    <option>{{ cache }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="edit_page()">edit</button>
+                </div>
             </div>
         </div>
     </div>

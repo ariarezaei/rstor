@@ -63,7 +63,8 @@ def create(request):
     if request.method == u'GET':
         context={
             'form': CacheForm,
-            'title' : 'RapidStor - Create a Cache'
+            'title' : 'RapidStor - Create a Cache',
+            'caches': cache_list()
         }
         return render(request, "create.html", context)
     if request.method == u'POST':
@@ -99,7 +100,8 @@ def edit(request, cache_name):
         }
         context={'form': CacheForm(initial=data),
                  'title': 'RapidStor - Edit a cache',
-                 'cache_name':cache_name}
+                 'cache_name':cache_name,
+                 'caches': cache_list()}
         return render(request, "edit.html", context)
     if request.method == u'POST':
         command = "rstor_cli edit "
