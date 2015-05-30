@@ -55,3 +55,8 @@
 {
     margin-top: 61px;
 }
+
+.form-input{
+    padding: 7px 7px;
+    height: auto;
+}
