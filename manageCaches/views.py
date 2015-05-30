@@ -1,6 +1,5 @@
 from django.core.context_processors import request
 from django.shortcuts import render
-from django import forms
 from subprocess import call
 import json
 import os.path
