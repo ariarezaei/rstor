@@ -82,22 +82,23 @@ def create(request):
             command = command + "> status.txt"
             print(command)
             os.system(command)
-            data = ""
-            with open("status.txt", "r") as file:
-                data = file.readlines()
+            success_message = parse_status_message('status.txt')
+            print(success_message)
             context={
                 'form': CacheForm,
                 'title': 'RapidStor - Create a Cache',
                 'caches': cache_list(),
-                'success_message': ""
+                'success_message': success_message
                 }
             return render(request, "create.html", context)
         else:
+            error_message = parse_status_message('status.txt')
+            print(error_message)
             context = {
                 'form': form,
                 'title': 'RapidStor - Create a Cache',
                 'caches': cache_list(),
-                'error_message': ''
+                'error_message': error_message
             }
             return render(request, "create.html", context)
 
