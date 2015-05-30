@@ -22,7 +22,7 @@ BODE_CHOICES= (
 
 CACHES = cache_list()
 
-FIELD_ATTR = 'form-control cache-input col-lg-9'
+FIELD_ATTR = 'form-control cache-input'
 
 
 class CacheForm(forms.Form):
