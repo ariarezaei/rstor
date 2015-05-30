@@ -4,7 +4,6 @@ from subprocess import call
 import json
 import os.path
 import os
-from manageCaches.forms import CacheForm
 
 
 def disks():
@@ -61,6 +60,7 @@ def fileToDicString(file_name):
 
 
 
+from manageCaches.forms import CacheForm
 def create(request):
     if request.method == u'GET':
         context={'form': CacheForm}
