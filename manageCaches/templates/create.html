@@ -45,9 +45,9 @@
         <form class="form-horizontal" id="cache-create-form" enctype="multipart/form-data" action="/manage/create" method="post">
             {% for field in form %}
                 <div class="form-group form-field">
-                    <div class="col-sm-9 col-sm-offset-3 text-danger">{{ field.errors }}</div>
                     <label class="control-label col-lg-3" for="{{ field.auto_id }}">{{ field.label }}</label>
-                    <div class="col-lg-9">{{ field }}</div>
+                    <div class="col-lg-6">{{ field }}</div>
+                    <div class="col-lg-3 text-danger">{{ field.errors.as_text }}</div>
                 </div>
             {% endfor %}
             {% csrf_token %}
