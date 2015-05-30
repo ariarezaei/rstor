@@ -16,7 +16,7 @@
             {% for field in form %}
                 <div class="form-group form-field">
                     <div class="col-sm-12">{{ field.errors }}</div>
-                    <div class="col-lg-3"><label for="{{ field.auto_id }}">{{ field.label }}</label></div>
+                    <label class="control-label col-lg-3" for="{{ field.auto_id }}">{{ field.label }}</label>
                     <div class="col-lg-9">{{ field }}</div>
                 </div>
             {% endfor %}
