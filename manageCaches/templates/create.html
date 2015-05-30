@@ -14,15 +14,15 @@
     <div class="col-lg-6 col-lg-offset-3">
         <form id="addCache" enctype="multipart/form-data" action="/manage/create" method="post">
             {% for field in form %}
-                <div class="form-group">
+                <div class="form-group form-field">
                     <div class="col-sm-12">{{ field.errors }}</div>
-                    <div class="col-lg-3">{{ field.label_tag }}</div>
+                    <div class="col-lg-3"><label for="{{ field.auto_id }}">{{ field.label }}</label></div>
                     <div class="col-lg-9">{{ field }}</div>
                 </div>
             {% endfor %}
             {% csrf_token %}
             <div class="row" style="margin-top:10px;">
-                <div class="btn-group btn-group-md col-lg-offset-3 col-lg-9" role="group" style="display: block; margin: 2% 5%;">
+                <div class="btn-group btn-group-md col-lg-offset-3 col-lg-9" role="group" style="margin-top: 5%;">
                     <button type="submit" class="btn btn-primary btn-lg col-lg-6">Submit</button>
                     <button type="button" class="btn btn-primary btn-lg col-lg-6">Clear</button>
                 </div>

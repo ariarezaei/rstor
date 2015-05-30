@@ -1,4 +1,8 @@
-.cache-field{
+.cache-input{
     padding: 7px 7px;
     height: auto;
+}
+
+.form-field{
+    margin-bottom: 10px;
 }
