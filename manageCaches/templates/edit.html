@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% block extra_css %}
 
+{% block extra_css %}
+    <link href="{% static "css/cacheform.css" %}" rel="stylesheet">
+    <link href="{% static "css/createdit.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block extra_script %}
