@@ -87,7 +87,7 @@ def create(request):
 
 # EDIT page view
 from manageCaches.forms import EditForm
-def edit(request):
+def edit(request, cache_name):
     if request.method == u'GET':
         inf = cache_info(cache_name)
         data={
@@ -99,7 +99,8 @@ def edit(request):
             "hdd": inf["src_name"]
         }
         context={'form': EditForm(initial=data),
-                 'title': 'RapidStor - Edit a cache'}
+                 'title': 'RapidStor - Edit a cache',
+                 'cache_name':cache_name}
         return render(request, "edit.html", context)
     if request.method == u'POST':
         command = "rstor_cli edit "
