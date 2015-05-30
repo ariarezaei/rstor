@@ -17,6 +17,13 @@
         </div>
     </div>
     <div class="col-lg-6 col-lg-offset-3">
+        {% if error_message %}
+            <p>salam</p>
+        {% endif %}
+
+        {% if success_message %}
+            <p>khodafez</p>
+        {% endif %}
         <form class="form-horizontal" id="cache-edit-form" enctype="multipart/form-data" action="/manage/edit/{{ cache_name }}" method="post">
             {% for field in form %}
                 <div class="form-group form-field">
