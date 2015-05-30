@@ -69,6 +69,7 @@ def create(request):
         return render(request, "create.html", context)
     if request.method == u'POST':
         form = CacheForm(request.POST)
+
         if form.is_valid():
             command = "rstor_cli create " + " -d " + request.POST.get("hdd").rstrip("\n") + " -s " + request.POST.get("ssd").rstrip("\n")
             if request.POST.get("mode", "XX") != "XX" :
@@ -85,11 +86,20 @@ def create(request):
             with open("status.txt", "r") as file:
                 data = file.readlines()
             context={
-                'status': data,
-                'title': 'RapidStor - Status Page',
+                'form': CacheForm,
+                'title': 'RapidStor - Create a Cache',
                 'caches': cache_list(),
+                'success_message': ""
                 }
-            return render(request, "status.html", context)
+            return render(request, "create.html", context)
+        else:
+            context = {
+                'form': form,
+                'title': 'RapidStor - Create a Cache',
+                'caches': cache_list(),
+                'error_message': ''
+            }
+            return render(request, "create.html", context)
 
 
 # EDIT page view
