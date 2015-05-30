@@ -30,7 +30,7 @@ class CacheForm(forms.Form):
 
     name = forms.CharField(label='Cache Name', max_length=30, required=True,
                            error_messages={"required": "Please enter the cache name."},
-                           widget=forms.TextInput(attrs={'class': FIELD_ATTR}),)
+                           widget=forms.TextInput(attrs={'class': FIELD_ATTR}))
     mode = forms.ChoiceField(label="Mode",
         choices=MODE_CHOICES,
         initial='',
@@ -61,3 +61,8 @@ class CacheForm(forms.Form):
         widget=forms.Select(attrs={'class': FIELD_ATTR}),
         required=True
     )
+
+class EditForm(CacheForm):
+    name = forms.CharField(label='Cache Name', max_length=30, required=True,
+                           error_messages={"required": "Please enter the cache name."},
+                           widget=forms.ChoiceField(attrs={'class': FIELD_ATTR}, choices=CACHES))

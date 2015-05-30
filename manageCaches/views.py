@@ -86,7 +86,8 @@ def create(request):
 
 
 # EDIT page view
-def edit(request, cache_name):
+from manageCaches.forms import EditForm
+def edit(request):
     if request.method == u'GET':
         inf = cache_info(cache_name)
         data={
@@ -97,7 +98,7 @@ def edit(request, cache_name):
             "ssd": inf["ssd_name"],
             "hdd": inf["src_name"]
         }
-        context={'form': CacheForm(initial=data), "cache_name": cache_name,
+        context={'form': EditForm(initial=data),
                  'title': 'RapidStor - Edit a cache'}
         return render(request, "edit.html", context)
     if request.method == u'POST':
