@@ -27,7 +27,7 @@ class CacheForm(forms.Form):
     error_css_class = 'text-danger'
 
     name = forms.CharField(label='Cache Name', max_length=30, required=True,
-                           error_message={"required": "Please enter the cache name."})
+                           error_messages={"required": "Please enter the cache name."})
     mode = forms.ChoiceField(label="Mode",
         choices=MODE_CHOICES,
         initial='',
