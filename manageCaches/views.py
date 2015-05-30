@@ -65,7 +65,7 @@ def create(request):
             'form': CacheForm,
             'title' : 'RapidStor - Create a Cache',
             'caches': cache_list(),
-            'success_message': '<"\b>The cache was successfully created<"\b>'
+            'success_message': '<\\b>The cache was successfully created<"\\b>'
         }
         return render(request, "create.html", context)
     if request.method == u'POST':
