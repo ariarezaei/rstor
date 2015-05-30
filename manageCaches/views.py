@@ -16,7 +16,7 @@ def disks():
             lines.append((line.split(" ")[0], line))
     return tuple(lines)
 
-
+# Gives a list of existing caches
 def cache_list():
     call("./caches.sh")
     if os.path.isfile("caches.txt"):
@@ -28,7 +28,7 @@ def cache_list():
     else:
         return []
 
-
+# Gives info about a specified cache
 def cache_info(cache_name):
     inf = fileToDicString("/proc/rapidstor/"+cache_name+"/config");
     if inf.get("mode") == 1:
@@ -39,8 +39,7 @@ def cache_info(cache_name):
         inf["mode"] = "Read Only"
     return inf
 
-
-
+# Changes a stat file into a dictionary of numbers
 def fileToDicInt(file_name):
     f = open(file_name, 'r')
     d = dict()
@@ -49,7 +48,7 @@ def fileToDicInt(file_name):
         d[l[0]] = int(l[1])
     return d
 
-# Changes a stat file into a String Dictionary
+# Changes a stat file into a dictionary of strings
 def fileToDicString(file_name):
     f = open(file_name, 'r')
     d = dict()
@@ -58,12 +57,14 @@ def fileToDicString(file_name):
         d[l[0]] = l[1]
     return d
 
-
-
+# CREATE page view
 from manageCaches.forms import CacheForm
 def create(request):
     if request.method == u'GET':
-        context={'form': CacheForm}
+        context={
+            'form': CacheForm,
+            'title' : 'RapidStor - Create a Cache'
+        }
         return render(request, "create.html", context)
     if request.method == u'POST':
         command = "rstor_cli create " + " -d " + request.POST.get("hdd").rstrip("\n") + " -s " + request.POST.get("ssd").rstrip("\n")
@@ -84,7 +85,7 @@ def create(request):
         return render(request, "status.html", context)
 
 
-
+# EDIT page view
 def edit(request, cache_name):
     if request.method == u'GET':
         inf = cache_info(cache_name)
@@ -96,7 +97,8 @@ def edit(request, cache_name):
             "ssd": inf["ssd_name"],
             "hdd": inf["src_name"]
         }
-        context={'form': CacheForm(initial=data), "cache_name": cache_name}
+        context={'form': CacheForm(initial=data), "cache_name": cache_name,
+                 'title': 'RapidStor - Edit a cache'}
         return render(request, "edit.html", context)
     if request.method == u'POST':
         command = "rstor_cli edit "
