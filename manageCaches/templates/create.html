@@ -12,7 +12,7 @@
 
 {% block content %}
     <div class="col-lg-6 col-lg-offset-3">
-        <form id="addCache" enctype="multipart/form-data" action="/manage/create" method="post">
+        <form class="form-horizontal" id="addCache" enctype="multipart/form-data" action="/manage/create" method="post">
             {% for field in form %}
                 <div class="form-group form-field">
                     <div class="col-sm-12">{{ field.errors }}</div>
