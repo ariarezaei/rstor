@@ -1,1 +1,5 @@
-SDA
+/dev/sda 10.7 GB,
+/dev/sdb 104 MB,
+/dev/sdc 1073 MB,
+/dev/mapper/centos-swap 1073 MB,
+/dev/mapper/centos-root 9135 MB,

@@ -1,0 +1,21 @@
+cache1
+cache1
+cache1
+cache1
+cache1
+cache1
+cache1
+Traceback (most recent call last):
+  File "store_log.py", line 81, in <module>
+    time.sleep(5)
+KeyboardInterrupt
+cache1
+cache1
+Traceback (most recent call last):
+  File "store_log.py", line 81, in <module>
+    time.sleep(5)
+KeyboardInterrupt
+/var/tmp/scloSyeyg: line 8: 15408 Killed                  "python" "store_log.py"
+/var/tmp/sclvfiKJJ: line 8: 15545 Killed                  "python" "manage.py" "runserver" "0.0.0.0:80"
+/var/tmp/sclPyZKvo: line 8:  4462 Killed                  "python" "store_log.py"
+/var/tmp/sclcogNfa: line 8:  4798 Killed                  "python" "store_log.py"
