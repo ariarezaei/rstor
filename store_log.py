@@ -2,6 +2,7 @@
 import sqlite3
 import time
 from subprocess import call
+import threading
 
 db = sqlite3.connect("db.sqlite3")
 c = db.cursor()
@@ -10,6 +11,8 @@ last_reads = dict()
 last_writes = dict()
 last_read_time = dict()
 last_write_time = dict()
+last_ssd_reads = dict()
+lsdt_ssd_writes = dict()
 
 
 def store_stat(cache):
@@ -38,9 +41,11 @@ def retrieve_stats(cache_name):
         last_writes[cache_name] = dic["writes"]
         last_read_time[cache_name] = dic["rdtime_ms"]
         last_write_time[cache_name] = dic["wrtime_ms"]
+	last_ssd_reads[cache_name] = dic["ssd_reads"]
+	last_ssd_writes[cache_name] = dic["ssd_writes"]
     context = {
-        "reads": dic["ssd_reads"],
-        "writes": dic["ssd_writes"],
+        "reads": dic["ssd_reads"] - last_ssd_reads[cache_name],
+        "writes": dic["ssd_writes"] - last_ssd_writes[cache_name],
         "read_hit_rate": dic["read_hit_pct"],
         "write_hit_rate": dic["write_hit_pct"],
         "read_throughput": 0 if dic["rdtime_ms"] == last_read_time[cache_name] else 1000*(dic["reads"] - last_reads[cache_name])/(dic["rdtime_ms"] - last_read_time[cache_name]),
@@ -56,6 +61,8 @@ def retrieve_stats(cache_name):
     last_writes[cache_name] = dic["writes"]
     last_read_time[cache_name] = dic["rdtime_ms"]
     last_write_time[cache_name] = dic["wrtime_ms"]
+    last_ssd_reads[cache_name] = dic["ssd_reads"]
+    last_ssd_writes[cache_name] = dic["ssd_writes"]
 
     return context
 
@@ -80,6 +87,21 @@ while True:
         db.commit()
     time.sleep(5)
 db.close()
+
+def store():
+  threading.Timer(5, store).start()
+   call('./caches.sh')
+   f = open('caches.txt', 'r')
+
+   for line in f:
+       cache = line.rstrip("\n")
+       print(cache)
+       command = store_stat(cache)
+       c.execute(command)
+       db.commit()
+
+
+store()
 
 
 
