@@ -196,6 +196,7 @@ def remove(request, cache_name):
 def parse_status_message(file):
     res = ""
     with open(file, 'r') as status_file:
+        print(status_file.readlines())
         for line in status_file:
             if ':' in line or '=' in line or 'None' in line:
                 continue
