@@ -45,8 +45,8 @@ def retrieve_stats(cache_name):
         last_write_time[cache_name] = dic["wrtime_ms"]
         last_ssd_reads[cache_name] = dic["ssd_reads"]
         last_ssd_writes[cache_name] = dic["ssd_writes"]
-        last_read_hit = dic["read_hits"]
-        last_write_hit = dic["write_hits"]
+        last_read_hit[cache_name] = dic["read_hits"]
+        last_write_hit[cache_name] = dic["write_hits"]
     context = {
         "reads": dic["ssd_reads"] - last_ssd_reads[cache_name],
         "writes": dic["ssd_writes"] - last_ssd_writes[cache_name],
