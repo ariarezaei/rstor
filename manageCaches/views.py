@@ -191,7 +191,7 @@ def parse_status_message(file):
                 continue
             else:
                 res += line.replace('\n', '<br>')
-    if 'success' in res:
+    if 'Success' in res:
         return ('success', res)
     else:
         return ('fail', res)
