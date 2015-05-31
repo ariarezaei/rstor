@@ -144,6 +144,7 @@ def edit(request, cache_name):
             (status, message) = parse_status_message('status.txt')
             if status == 'success':
                 context={
+                    'cache_name': cache_name,
                     'form': form,
                     'title': 'RapidStor - Edit a cache',
                     'caches': cache_list(),
@@ -152,6 +153,7 @@ def edit(request, cache_name):
                 return render(request, "edit.html", context)
             else:
                 context = {
+                    'cache_name': cache_name,
                     'form': form,
                     'title': 'RapidStor - Edit a cache',
                     'caches': cache_list(),
@@ -160,6 +162,7 @@ def edit(request, cache_name):
                 return render(request, "edit.html", context)
         else:
             context = {
+                'cache_name': cache_name,
                 'form': form,
                 'title': 'RapidStor - Edit a cache',
                 'caches': cache_list(),
