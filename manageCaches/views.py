@@ -128,27 +128,44 @@ def edit(request, cache_name):
                  'caches': cache_list()}
         return render(request, "edit.html", context)
     if request.method == u'POST':
-        command = "rstor_cli edit "
-        #command = "rstor_cli edit " + " -d " + request.POST.get("hdd").rstrip("\n") + " -s " + request.POST.get("ssd").rstrip("\n")
-        if request.POST.get("mode", "XX") != "XX" :
-            command = command + " -m " + request.POST.get("mode").rstrip("\n")
-        if request.POST.get("eviction", "XX") != "XX" :
-            command = command + " -p " + request.POST.get("eviction").rstrip("\n")
-        #if request.POST.get("block_size", "XX") != "XX" :
-         #   command = command + " -b " + request.POST.get("block_size").rstrip("\n")
-        command = command + " -c " + cache_name.rstrip("\n")
-        command = command + "> status.txt"
-        print(command)
-        os.system(command)
-        data = ""
-        with open("status.txt", "r") as file:
-            data = file.readlines()
-        context={
-            'status': data,
-            'title': 'RapidStor - Status Page',
-            'caches': cache_list()
-        }
-        return render(request, "status.html", context)
+        form = CacheForm(request.POST)
+        if form.is_valid():
+            command = "rstor_cli edit "
+            #command = "rstor_cli edit " + " -d " + request.POST.get("hdd").rstrip("\n") + " -s " + request.POST.get("ssd").rstrip("\n")
+            if request.POST.get("mode", "XX") != "XX" :
+                command = command + " -m " + request.POST.get("mode").rstrip("\n")
+            if request.POST.get("eviction", "XX") != "XX" :
+                command = command + " -p " + request.POST.get("eviction").rstrip("\n")
+            #if request.POST.get("block_size", "XX") != "XX" :
+             #   command = command + " -b " + request.POST.get("block_size").rstrip("\n")
+            command = command + " -c " + cache_name.rstrip("\n")
+            command = command + "> status.txt"
+            os.system(command)
+            (status, message) = parse_status_message('status.txt')
+            if status == 'success':
+                context={
+                    'form': CacheForm,
+                    'title': 'RapidStor - Edit a cache',
+                    'caches': cache_list(),
+                    'success_message': message
+                }
+                return render(request, "edit.html", context)
+            else:
+                context = {
+                    'form': form,
+                    'title': 'RapidStor - Edit a cache',
+                    'caches': cache_list(),
+                    'error_message': message
+                }
+                return render(request, "edit.html", context)
+        else:
+            context = {
+                'form': form,
+                'title': 'RapidStor - Edit a cache',
+                'caches': cache_list(),
+                'error_message': 'Form is invalid'
+            }
+            return render(request, 'edit.html', context)
 
 def remove(request, cache_name):
     if request.method == u'GET':
