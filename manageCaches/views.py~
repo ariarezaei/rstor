@@ -183,7 +183,6 @@ def remove(request, cache_name):
                 'caches': cache_list(),
                 'success_message': message
             }
-            Log.objects.filter(cache=cache_name).delete()
             return render(request, "status.html", context)
         else:
             context={
