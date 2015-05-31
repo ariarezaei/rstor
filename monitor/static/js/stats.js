@@ -233,7 +233,7 @@ function send_info()
 
 function clear_fields()
 {
-    $('#cache-name').val("");
+    $('#cache-name').val("Please choose a cache");
     $('#starting-date').val("");
     $('#ending-date').val("");
 }
