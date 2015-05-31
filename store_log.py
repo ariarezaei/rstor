@@ -48,8 +48,8 @@ def retrieve_stats(cache_name):
     context = {
         "reads": dic["ssd_reads"] - last_ssd_reads[cache_name],
         "writes": dic["ssd_writes"] - last_ssd_writes[cache_name],
-        "read_hit_rate":  0 if dic["reads"] == last_reads[cache_name] else (dic["read_hits"] - last_read_hit[cache_name])/(dic["reads"] - last_reads[cache_name]),
-        "write_hit_rate": 0 if dic["writes"] == last_writes[cache_name] else (dic["write_hits"] - last_write_hit[cache_name])/(dic["writes"] - last_writes[cache_name]),
+        "read_hit_rate":  0 if dic["reads"] == last_reads[cache_name] else 100*(dic["read_hits"] - last_read_hit[cache_name])/(dic["reads"] - last_reads[cache_name]),
+        "write_hit_rate": 0 if dic["writes"] == last_writes[cache_name] else 100*(dic["write_hits"] - last_write_hit[cache_name])/(dic["writes"] - last_writes[cache_name]),
         "read_throughput": 0 if dic["rdtime_ms"] == last_read_time[cache_name] else 1000*(dic["reads"] - last_reads[cache_name])/(dic["rdtime_ms"] - last_read_time[cache_name]),
         "write_throughput": 0 if dic["wrtime_ms"] == last_write_time[cache_name] else 1000*(dic["writes"] - last_writes[cache_name])/(dic["wrtime_ms"] - last_write_time[cache_name]),
         "read_mean_response": 0 if dic["reads"] == last_reads[cache_name] else (dic["rdtime_ms"] - last_read_time[cache_name])/(dic["reads"] - last_reads[cache_name]),
