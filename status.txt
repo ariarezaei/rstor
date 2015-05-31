@@ -1,0 +1,13 @@
+Cache Name       : cache2
+Source Device    : /dev/mapper/centos-root
+SSD Device       : /dev/sdb
+Policy           : fifo
+Mode             : Write Back
+Block Size       : 4096
+Associativity    : 256
+ENV{DM_UUID}=="LVM-ER50UnA9R2qaBF5VkuzpIEitYn4xINoFSeQZnn26Ir2lh4oDYefIgJ4q3OzOI0AH", ENV{DEVTYPE}=="disk"
+None
+Creation of udev rules file failed
+
+expected a character buffer object
+Cache created successfully
