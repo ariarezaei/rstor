@@ -199,6 +199,8 @@ def parse_status_message(file):
         for line in status_file:
             if ':' in line or '=' in line or 'None' in line:
                 continue
+            elif line == "":
+                continue
             else:
                 res += line.replace('\n', '<br>')
     if 'Success' in res:
