@@ -144,7 +144,7 @@ def edit(request, cache_name):
             (status, message) = parse_status_message('status.txt')
             if status == 'success':
                 context={
-                    'form': CacheForm,
+                    'form': form,
                     'title': 'RapidStor - Edit a cache',
                     'caches': cache_list(),
                     'success_message': message
@@ -173,15 +173,22 @@ def remove(request, cache_name):
         command = command + "> status.txt"
         print(command)
         os.system(command)
-        data = ""
-        with open("status.txt", "r") as file:
-            data = file.readlines()
-        context={
-            'status': data,
-            'title': 'RapidStor - Status Page',
-            'caches': cache_list()
-        }
-        return render(request, "status.html", context)
+        (status,message) = parse_status_message('status.txt')
+        if status == 'success':
+            context={
+                'title': 'RapidStor - Status Page',
+                'caches': cache_list(),
+                'success_message': 'Cache was successfully removed!'
+            }
+            return render(request, "status.html", context)
+        else:
+            context={
+                'title': 'RapidStor - Status Page',
+                'caches': cache_list(),
+                'error_message': 'Cache removal failed!'
+            }
+            return render(request, "status.html", context)
+
 
 def parse_status_message(file):
     res = ""
