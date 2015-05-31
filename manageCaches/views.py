@@ -176,22 +176,13 @@ def remove(request, cache_name):
         command = command + "> status.txt"
         print(command)
         os.system(command)
-        (status,message) = parse_status_message('status.txt')
-        if status == 'success':
-            context={
-                'title': 'RapidStor - Status Page',
-                'caches': cache_list(),
-                'success_message': message
-            }
-            Log.objects.filter(cache=cache_name).delete()
-            return render(request, "status.html", context)
-        else:
-            context={
-                'title': 'RapidStor - Status Page',
-                'caches': cache_list(),
-                'error_message': message
-            }
-            return render(request, "status.html", context)
+        context={
+            'title': 'RapidStor - Status Page',
+            'caches': cache_list(),
+            'success_message': message
+        }
+        Log.objects.filter(cache=cache_name).delete()
+        return render(request, "status.html", context)
 
 
 def parse_status_message(file):
