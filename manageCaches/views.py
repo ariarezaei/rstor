@@ -197,7 +197,7 @@ def parse_status_message(file):
     res = ""
     with open(file, 'r') as status_file:
         for line in status_file:
-            if ':' in line:
+            if ':' in line or '=' in line:
                 continue
             else:
                 res += line.replace('\n', '<br>')
