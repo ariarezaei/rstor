@@ -15,7 +15,8 @@
                 <h2 class="page-header">Cache was successfully removed!</h2>
             </div>
             <div class="col-lg-12">
-                <h4>{% autoescape off %}{{ success_message }}{% endautoescape %}<br><a href="#edit-modal"data-toggle="modal" data-target="#edit-modal">Back to edit</a></h4>
+                <h4>Extra info:</h4>
+                <p>{% autoescape off %}{{ success_message }}{% endautoescape %}<br><a href="#edit-modal"data-toggle="modal" data-target="#edit-modal">Back to edit</a></p>
             </div>
         </div>
     {% endif %}
@@ -25,7 +26,8 @@
                 <h2 class="page-header">{{ error_message }}</h2>
             </div>
             <div class="col-lg-12">
-                <h4>{% autoescape off %}{{ error_message }}{% endautoescape %}<br>.<br>Please try again later.<a href="#edit-modal"data-toggle="modal" data-target="#edit-modal"> Back to edit</a></h4>
+                <h4>Extra info:</h4>
+                <p>{% autoescape off %}{{ error_message }}{% endautoescape %}<br>.<br>Please try again later.<a href="#edit-modal"data-toggle="modal" data-target="#edit-modal"> Back to edit</a></p>
             </div>
         </div>
     {% endif %}

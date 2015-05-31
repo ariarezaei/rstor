@@ -181,14 +181,14 @@ def remove(request, cache_name):
             context={
                 'title': 'RapidStor - Status Page',
                 'caches': cache_list(),
-                'success_message': 'Cache was successfully removed!'
+                'success_message': message
             }
             return render(request, "status.html", context)
         else:
             context={
                 'title': 'RapidStor - Status Page',
                 'caches': cache_list(),
-                'error_message': 'Cache removal failed!'
+                'error_message': message
             }
             return render(request, "status.html", context)
 
