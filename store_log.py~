@@ -46,7 +46,7 @@ def retrieve_stats(cache_name):
         last_ssd_reads[cache_name] = dic["ssd_reads"]
         last_ssd_writes[cache_name] = dic["ssd_writes"]
         last_read_hit[cache_name] = dic["read_hits"]
-        last_write_hit[cache_name] = dic["write_hits"]
+	last_write_hit[cache_name] = dic["write_hits"]
     context = {
         "reads": dic["ssd_reads"] - last_ssd_reads[cache_name],
         "writes": dic["ssd_writes"] - last_ssd_writes[cache_name],
@@ -80,18 +80,6 @@ def f2d(file_name):
         d[l[0]] = int(l[1])
     return d
 
-while True:
-    call('./caches.sh')
-    f = open('caches.txt', 'r')
-
-    for line in f:
-        cache = line.rstrip("\n")
-        print(cache)
-        command = store_stat(cache)
-        c.execute(command)
-        db.commit()
-    time.sleep(5)
-db.close()
 
 def store():
   threading.Timer(5, store).start()
@@ -104,7 +92,6 @@ def store():
       command = store_stat(cache)
       c.execute(command)
       db.commit()
-
 
 store()
 
