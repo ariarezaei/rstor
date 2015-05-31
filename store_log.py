@@ -4,8 +4,6 @@ import time
 from subprocess import call
 import threading
 
-db = sqlite3.connect("db.sqlite3")
-c = db.cursor()
 
 last_reads = dict()
 last_writes = dict()
@@ -33,8 +31,6 @@ def store_stat(cache):
     cur_writes = str(context["cur_writes"])
     cache = "'" + cache + "',"
     command= "INSERT INTO monitor_log(datetime, cache, read_hit_rate, write_hit_rate, throughput_write, throughput_read, mean_write_time, mean_read_time, read_requests, write_requests, cur_write_time, cur_read_time, cur_reads, cur_writes) VALUES (datetime('now', 'localtime') ," + cache  + read_hit_rate + write_hit_rate + throughput_write + throughput_read + mean_write_time + mean_read_time + read_requests + write_requests + cur_write_time + cur_read_time + cur_reads + cur_writes + " )"
-    c.execute(command)
-    db.commit()
     return command
 
 
@@ -85,13 +81,18 @@ def f2d(file_name):
 
 def store():
   threading.Timer(5, store).start()
+  db = sqlite3.connect("db.sqlite3")
+  c = db.cursor()
   call('./caches.sh')
   f = open('caches.txt', 'r')
 
   for line in f:
       cache = line.rstrip("\n")
       print(cache)
-      store_stat(cache)
+      command = store_stat(cache)
+      c.execute(command)
+      db.commit()
+  db.close()
 
 store()
 
