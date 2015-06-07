@@ -15,5 +15,5 @@ urlpatterns = patterns('',
 
     url(r'^rapidstor/stats/', include('monitor.urls')),
     url(r'^rapidstor/manage/', include('manageCaches.urls')),
-    url(r'^rapidstor$', statsViews.home)
+    url(r'^rapidstor/$', statsViews.home)
 )

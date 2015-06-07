@@ -7,6 +7,10 @@ import os
 
 
 def disks():
+    import platform
+    if platform.system() == "Windows":
+        print ('This is only for testing')
+        return [('testDisk','testDisk'), ('testDisk2','testDisk2')]
     call("./Disks.sh")
     lines = []
     if os.path.isfile("Disks.txt"):
@@ -18,6 +22,10 @@ def disks():
 
 # Gives a list of existing caches
 def cache_list():
+    import platform
+    if platform.system() == "Windows":
+        print ('This is only for testing')
+        return ['testCache1', 'testCache2']
     call("./caches.sh")
     if os.path.isfile("caches.txt"):
         f = open("caches.txt", 'r')

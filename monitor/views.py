@@ -120,6 +120,10 @@ def styled_state(state):
 
 # Returns a list of caches
 def cache_list():
+    import platform
+    if platform.system() == "Windows":
+        print ('This is only for testing')
+        return ['testCache1', 'testCache2']
     call("./caches.sh")
     if os.path.isfile("caches.txt"):
         f = open("caches.txt", 'r')
@@ -216,4 +220,10 @@ def fileToDicString(file_name):
 
 # Home page
 def home(request):
-    pass
+    print('hello')
+    print(cache_list())
+    context = {
+        'caches' : cache_list()
+    }
+
+    return render(request, 'home.html', context)

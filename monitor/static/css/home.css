@@ -1,0 +1,121 @@
+
+body{
+    text-align: center;
+    font-family: 'Roboto', Tahoma, sans-serif;
+    color: #EDEDED;
+
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    position: relative;
+
+    background: #E2E4E7;
+    background-image: -webkit-radial-gradient(rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.7) 100%), url('../images/bg1.jpg');
+    background-image: radial-gradient(rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.7) 100%), url('../images/bg1.jpg');
+
+    background-size: cover;
+    background-attachment: fixed;
+
+    -webkit-font-smoothing: antialiased;
+    z-index: -999;
+}
+
+html {
+    height: 100%;
+}
+
+.logo {
+    margin: 0 auto;
+}
+
+.logo > img {
+    margin-top: 100px;
+    max-width: 75%;
+    height: auto;
+}
+
+.logo > img:hover {
+    opacity: .6;
+}
+
+.title > h1 {
+    font-family: 'Roboto', museo-sans, serif;
+    font-weight: 900;
+    font-size: 1em;
+    text-align: center;
+    text-shadow: 1px 1px 2px black;
+    line-height: 150%;
+    margin-top: 35px;
+}
+
+.main {
+    font-size: 5em;
+    min-height: 100%;
+    overflow: auto;
+    padding-bottom: 120px;
+}
+
+.footer {
+    position: relative;
+    margin-top: -165px;
+    height: 165px;
+    clear: both;
+    padding-top: 20px;
+}
+
+.btn {
+
+    font-family: 'Roboto', museo-sans, serif;
+    font-size: 18px;
+    margin-right: 20px;
+    padding: 15px 25px;
+    width: auto;
+
+    color: #FFFFFF;
+    background-color: #FFFFFF;
+    background: 0 0;
+    border-color: #fff;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+a.btn {
+    text-decoration: none;
+}
+
+a.btn:hover {
+    font-family: 'Roboto', museo-sans, serif;
+    color: #333333;
+}
+
+.btn:hover {
+    font-family: 'Roboto', museo-sans, serif;
+    background-color: #ffffff;
+    background-image: -webkit-gradient(linear, 50, 50, 50 100%, from(rgba(50, 50, 50, .05)), to(rgba(50, 50, 50, .05)));
+    background-image: -webkit-linear-gradient(top, rgba(50, 50, 50, .05), rgba(50, 50, 50, .05));
+    background-image: -moz-linear-gradient(top, rgba(50, 50, 50, .05), rgba(50, 50, 50, .05));
+    background-image: -o-linear-gradient(top, rgba(50, 50, 50, .05), rgba(50, 50, 50, .05));
+    background-image: linear-gradient(to bottom, rgba(50, 50, 50, .05), rgba(50, 50, 50, .05));
+    background-repeat: repeat-x
+}
+
+.btn:active {
+    font-family: 'Roboto', museo-sans, serif;
+    background-image: -webkit-gradient(linear, 50, 50, 50 100%, from(rgba(50, 50, 50, .1)), to(rgba(50, 50, 50, .1)));
+    background-image: -webkit-linear-gradient(top, rgba(50, 50, 50, .1), rgba(50, 50, 50, .1));
+    background-image: -moz-linear-gradient(top, rgba(50, 50, 50, .1), rgba(50, 50, 50, .1));
+    background-image: -o-linear-gradient(top, rgba(50, 50, 50, .1), rgba(50, 50, 50, .1));
+    background-image: linear-gradient(to bottom, rgba(50, 50, 50, .1), rgba(50, 50, 50, .1));
+    background-repeat: repeat-x
+}
+
+.modal
+{
+    color:#333;
+}
