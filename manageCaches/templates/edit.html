@@ -40,7 +40,7 @@
                 </div>
             </div>
         {% endif %}
-        <form class="form-horizontal" id="cache-edit-form" enctype="multipart/form-data" action="/manage/edit/{{ cache_name }}" method="post">
+        <form class="form-horizontal" id="cache-edit-form" enctype="multipart/form-data" action="/rapidstor/manage/edit/{{ cache_name }}" method="post">
             {% for field in form %}
                 <div class="form-group form-field">
                     <label class="control-label col-lg-3" for="{{ field.auto_id }}">{{ field.label }}</label>

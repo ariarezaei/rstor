@@ -246,7 +246,7 @@ function update_charts()
 {
     var cache_name = $('#cache-name').val();
     //console.log("Update started");
-    $.get("livestat/" + cache_name , function(result){
+    $.get("live/" + cache_name , function(result){
         //console.log("Data is loaded, result = ");
         data = result;
         //console.log(data);
@@ -280,3 +280,4 @@ function update_charts()
 
     }, "json");
 }
+

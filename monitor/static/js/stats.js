@@ -224,10 +224,9 @@ function send_info()
             );
         })
         .fail(function(){
-            alert('fail');
+            alert('Something went wrong. Please try again later.');
         })
         .always(function(){
-            console.log('always do this.');
     });
 }
 

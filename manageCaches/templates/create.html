@@ -43,7 +43,7 @@
             </div>
         {% endif %}
 
-        <form class="form-horizontal" id="cache-create-form" enctype="multipart/form-data" action="/manage/create" method="post">
+        <form class="form-horizontal" id="cache-create-form" enctype="multipart/form-data" action="/rapidstor/manage/create" method="post">
             {% for field in form %}
                 <div class="form-group form-field">
                     <label class="control-label col-lg-3" for="{{ field.auto_id }}">{{ field.label }}</label>

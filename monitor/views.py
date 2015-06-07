@@ -213,3 +213,7 @@ def fileToDicString(file_name):
         l = line.split()
         d[l[0]] = l[1]
     return d
+
+# Home page
+def home(request):
+    pass

@@ -46,21 +46,21 @@
                     <div class="panel-body">
                         <form id="stat-menu">
                             <div class="form-group" style="margin-bottom:0;">
-                                <label for="cache-name"> Choose target cache<span class="text-danger"> *</span></label>
+                                <label for="cache-name"> Choose target cache</label>
                                 <select id="cache-name" class="form-control cache-selector">
                                     <option>Please select a cache</option>
                                     {% for cache in caches %}
                                         <option>{{ cache }}</option>
                                     {% endfor %}
                                 </select>
-                                <label for="starting-date" style="margin-top:10px;">From<span class="text-danger"> *</span></label>
+                                <label for="starting-date" style="margin-top:10px;">From</label>
                                 <div class='input-group date' id='start-time-picker'>
                                     <input type='text' class="form-control cache-selector" id="starting-date"/>
                                     <span class="input-group-addon cache-selector">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
-                                <label for="starting-date" style="margin-top:10px;">To<span class="text-danger"> *</span></label>
+                                <label for="ending-date" style="margin-top:10px;">To</label>
                                 <div class='input-group date' id='end-time-picker'>
                                     <input type='text' class="form-control cache-selector" id="ending-date"/>
                                     <span class="input-group-addon cache-selector">
